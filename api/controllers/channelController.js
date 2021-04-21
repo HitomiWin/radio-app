@@ -10,7 +10,7 @@ const getAllChannels = async (req, res) => {
     `http://api.sr.se/api/v2/channels?${json}&${paginationFalse}`
   );
   channels = await channels.json();
-  res.json(channels);
+   res.json(channels);
 };
 
 const getChannelById = async (req, res) => {

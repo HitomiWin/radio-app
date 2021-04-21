@@ -1,0 +1,13 @@
+
+.link {
+  color: #ffffff80;
+  font-size: 1rem;
+  padding-top:.5rem;
+  margin-right:2rem;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: lightgray;
+  text-decoration: none;
+}
