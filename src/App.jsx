@@ -1,15 +1,21 @@
 import { BrowserRouter, Route } from "react-router-dom";
 import Navbar from "./components/Navigationbar";
 import ChannelContextProvider from "./contexts/ChannelContext";
-import Home from "./pages/Home"
+import ProgramContextProvider from "./contexts/ProgramContext";
+import Home from "./pages/Home";
+import ProgramsPage from "./pages/ProgramsPage";
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      <ChannelContextProvider>
-      <Navbar />
-      <Route exact path="/" component={Home} />
-      </ChannelContextProvider>
+        <ChannelContextProvider>
+          <ProgramContextProvider>
+            <Navbar />
+            <Route exact path="/" component={Home} />
+            <Route exact path="/programs/:channelId" component={ ProgramsPage } />
+          </ProgramContextProvider>
+        </ChannelContextProvider>
       </BrowserRouter>
     </div>
   );
