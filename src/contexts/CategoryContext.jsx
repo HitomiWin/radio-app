@@ -3,41 +3,30 @@ export const CategoryContext =createContext();
 
 const CategoryContextProvider=(props)=>{
 const [categories, setCategories]=useState(null);
-const [programsByCategory, setProgramsByCategory]= useState(null);
-const [categoryName, setCategoryName]=useState(null)
+const [category, setCategory]=useState(null);
 useEffect(() => {
   getAllCategories()
 }, [])
 
-useEffect(()=>{
-  getCategoryName();
-},[categoryName])
 
 const getAllCategories= async ()=>{
   let categories = await fetch (`/api/v1/categories`)
   categories = await categories.json();
-  setCategories(categories)
+  setCategories(categories.programcategories)
 }
-const getProgramsByCategory = async (categoryId)=>{
-  let programs = await fetch(`/api/v1/categories/${categoryId}`);
-  programs = await programs.json();
-  setProgramsByCategory(programs.programs)
+const getCategoryById = async (categoryId)=>{
+  let category = await fetch (`/api/v1/categories/${categoryId}`);
+  category = await category.json();
+  setCategory(category.programcategory)
 }
-
-const getCategoryName =(categoryName)=>{
-  setCategoryName(categoryName)
-}
-
-
 
 const values ={
  categories,
- programsByCategory,
- getProgramsByCategory,
- categoryName,
- getCategoryName,
+ category,
+ getCategoryById
 
 }
+
   return(
     <CategoryContext.Provider value={values}>
       {props.children}

@@ -11,17 +11,17 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-          <ProgramContextProvider>
           <CategoryContextProvider>
+          <ProgramContextProvider>
         <ChannelContextProvider>
             <Navbar />
             <Route exact path="/" component={Home} />
             <Route exact path="/programs/:channelId" component={ ProgramsPage } />
             <Route exact path="/programs/allprogram/:programId" component={ ProgramPage } />
-            <Route exact path="/categories/:categoryId" component={ ProgramsByCategory } />
+            <Route exact path="/programs/categories/:categoryId" component={ ProgramsByCategory } />
         </ChannelContextProvider>
-          </CategoryContextProvider>
           </ProgramContextProvider>
+          </CategoryContextProvider>
       </BrowserRouter>
     </div>
   );

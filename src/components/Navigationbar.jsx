@@ -5,16 +5,14 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom"
 import styles from "../css/Navbar.module.css";
 const Navigationbar=()=> {
-  const { categories, getCategoryName }=useContext(CategoryContext);
+  const { categories }=useContext(CategoryContext);
   const history = useHistory();
-  const handleOnClick=(categoryId,categoryName)=>{
-    getCategoryName(categoryName)
-    history.push(`/categories/${categoryId}`)
-
+  const handleOnClick=(categoryId)=>{ 
+    history.push(`/programs/categories/${categoryId}`)
   }
   const renderNavDropDownItem =()=>{
     return categories.map((category)=>
-    <NavDropdown.Item key={category.id} onClick={()=>{handleOnClick(category.id,category.name)}}>{category.name}</NavDropdown.Item>
+    <NavDropdown.Item key={category.id} onClick={()=>{handleOnClick(category.id)}}>{category.name}</NavDropdown.Item>
     )
   }
   

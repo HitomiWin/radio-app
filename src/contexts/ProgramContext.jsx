@@ -18,7 +18,11 @@ const ProgramContextProvider=(props)=>{
     program = await program.json();
     setProgram(program.program)
   }
-  
+  const getProgramsByCategory = async (categoryId)=>{
+    let programs = await fetch(`/api/v1//programs/categories/${categoryId}`);
+    programs = await programs.json();
+    setPrograms(programs.programs)
+  }
   
 
   const values ={
@@ -26,6 +30,7 @@ const ProgramContextProvider=(props)=>{
     getProgramsByChannelId,
     program,
     getProgramByProgramId,
+    getProgramsByCategory,
   }
 
   return (

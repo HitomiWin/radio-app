@@ -1,20 +1,22 @@
 import { useContext, useEffect} from "react"
 import { CategoryContext } from "../contexts/CategoryContext"
+import { ProgramContext } from "../contexts/ProgramContext"
 import { Dropdown } from "react-bootstrap"
 import styles from "../css/ProgramsByCategory.module.css"
 
 const ProgramsByCategory = (props) => {
-
-  const {programsByCategory, getProgramsByCategory,categoryName} =useContext(CategoryContext)
-  const {categoryId}=props.match.params;
+  const {program , getProgramsByCategory } = useContext( ProgramContext )
+  const { category, getCategoryById } = useContext( CategoryContext )
+  const {categoryId} = props.match.params;
   useEffect(() => {
     getProgramsByCategory(categoryId);
-  }, []);
+    // getCategoryById(categoryId)
+  }, [categoryId]);
  
   const renderMenuBar = () => {
     return (
       <ul className={styles.menuList}>
-        <li className={styles.listItem}>{categoryName}</li>
+        <li className={styles.listItem}></li>
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
             Dropdown Button
