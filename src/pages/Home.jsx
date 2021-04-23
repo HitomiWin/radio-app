@@ -21,7 +21,7 @@ function Home() {
           <Card.Body>
             <Card.Title>{channel.name}</Card.Title>
             <Card.Text>{channel.tagline}</Card.Text>
-            <Button variant="primary" >
+            <Button variant="secondary" >
               Tablå
             </Button>
           </Card.Body>
