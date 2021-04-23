@@ -5,10 +5,10 @@ const ProgramContextProvider=(props)=>{
   const [programs, setPrograms]= useState(null);
 
   const getProgramsByChannelId = async (channelId)=>{
-    let fetchedprograms = await fetch(`/api/v1/programs/${channelId}`);
-    fetchedprograms = await  fetchedprograms.json();
-    console.log(fetchedprograms)
-    setPrograms( fetchedprograms)
+    let programs = await fetch(`/api/v1/programs/${channelId}`);
+    programs = await  programs.json();
+    let sorted =[...programs].sort((a,b)=>(a.name >b .name ? 1: -1))
+    setPrograms(sorted)
 }
 
   const values ={

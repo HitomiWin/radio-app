@@ -12,12 +12,12 @@ function Home() {
   };
   const renderChannels = () => {
     return channels.map((channel) => (
-        <Card key={channel.id} onClick={() => handleClick(channel.id) } style={{marginTop:".5rem"}}>
+        <Card key={channel.id} onClick={() => handleClick(channel.id) }>
          <Row className={styles.row}>
-          <Col xs={12} sm={2} lg={2} style={{padding:"1.25rem"}}>
-            <Card.Img src={channel.image} alt={"image"}/>
+          <Col xs={3} sm={3} lg={3} style={{padding:"1.25rem"}}>
+            <Card.Img src={channel.image} alt={"image"} />
           </Col>
-          <Col xs={12} sm={8} lg={8}>
+          <Col xs={9} sm={9} lg={9}>
           <Card.Body>
             <Card.Title>{channel.name}</Card.Title>
             <Card.Text>{channel.tagline}</Card.Text>
@@ -34,8 +34,8 @@ function Home() {
   return (
     <div className={styles.home}>
       <h1>This is the Homepage</h1>
-      <Container  fluid className="d-flex justify-content-center flex-wrap" style={{paddingLeft:" 0px",paddingRight:" 0px"}}>
-      <Row xs={1} md={1} lg={2}>      
+      <Container className="d-flex justify-content-center flex-wrap"  >
+      <Row lg={2}>      
       {channels && renderChannels()}
       </Row> 
       </Container>

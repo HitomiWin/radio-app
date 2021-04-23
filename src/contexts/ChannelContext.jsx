@@ -4,24 +4,30 @@ export const ChannelContext = createContext();
 
 const ChannelContextProvider = (props) => {
   const [channels, setChannels] = useState(null);
+  const [singleChannel, setSingleChannel] = useState(null);
   useEffect(() => {
     getAllChannels();
-    console.log(channels);
   }, []);
 
   const getAllChannels = async () => {
-    let fetchedchannels = await fetch("/api/v1/channels");
-    fetchedchannels = await fetchedchannels.json();
-    console.log(fetchedchannels);
-    if (fetchedchannels) {
-      setChannels(fetchedchannels.channels);
+    let channels = await fetch("/api/v1/channels");
+    channels = await channels.json();
+    if (channels) {
+      setChannels(channels.channels);
     } else {
       console.log("No result");
     }
   };
+  const getChannelById = async (channelId)=>{
+    let channel = await fetch(`/api/v1/channels/${channelId}`);
+    channel = await channel.json();
+    setSingleChannel(channel.channel)
+  }
 
   const values = {
     channels,
+    singleChannel,
+    getChannelById
   };
 
   return (

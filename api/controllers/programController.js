@@ -15,7 +15,7 @@ const getProgramsByChannelId = async(req, res)=>{
 }
 
 const getProgramById = async (req, res)=>{
-  let program = await fetch(`http://api.sr.se/api/v2/programs/${req.params.programId}?${json} `)
+  let program = await fetch(`http://api.sr.se/api/v2/programs/${req.params.programId}?${json}`)
   program = await program.json()
   res.json(program)
 }
