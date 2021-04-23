@@ -6,11 +6,10 @@ import styles from "../css/ProgramsPage.module.css"
 const ProgramsByChannelId=()=> {
   const { programs , getProgramsByChannelId } = useContext( ProgramContext );
   const history =useHistory();
-  const renderPrograms=()=>{
-
   const handleClick=(programId)=>{
     history.push(`/programs/allprogram/${programId}`)
   }  
+  const renderPrograms=()=>{
    return (
      programs.map((program)=>(
       <Col key={program.id} xs={12} md={12} lg={6}   onClick={() => handleClick(program.id) }>

@@ -16,12 +16,13 @@ const ProgramContextProvider=(props)=>{
   const getProgramByProgramId =async (programId)=>{
     let program = await fetch(`/api/v1/programs/allprogram/${programId}`);
     program = await program.json();
-    setProgram(program.program)
+    setProgram(program)
   }
   const getProgramsByCategory = async (categoryId)=>{
     let programs = await fetch(`/api/v1//programs/categories/${categoryId}`);
     programs = await programs.json();
-    setPrograms(programs.programs)
+    let sorted =[...programs].sort((a,b)=>(a.name >b .name ? 1: -1))
+    setPrograms(sorted);
   }
   
 

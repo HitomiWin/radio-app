@@ -5,6 +5,7 @@ export const ChannelContext = createContext();
 const ChannelContextProvider = (props) => {
   const [channels, setChannels] = useState(null);
   const [singleChannel, setSingleChannel] = useState(null);
+  const [schedule, setSchedule] = useState(null);
   useEffect(() => {
     getAllChannels();
   }, []);
@@ -13,7 +14,7 @@ const ChannelContextProvider = (props) => {
     let channels = await fetch("/api/v1/channels");
     channels = await channels.json();
     if (channels) {
-      setChannels(channels.channels);
+      setChannels(channels);
     } else {
       console.log("No result");
     }
@@ -24,10 +25,19 @@ const ChannelContextProvider = (props) => {
     setSingleChannel(channel.channel)
   }
 
+  const  getChannelSchedule= async (channelId)=>{
+    let date = new Date()
+    let schedule = await fetch (`/api/v1/channels/schedule/${channelId}?date=${date}`);
+    schedule = await schedule.json();
+    setSchedule(schedule);
+  }
+
   const values = {
     channels,
     singleChannel,
-    getChannelById
+    getChannelById,
+    schedule,
+    getChannelSchedule
   };
 
   return (

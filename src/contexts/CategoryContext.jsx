@@ -12,12 +12,12 @@ useEffect(() => {
 const getAllCategories= async ()=>{
   let categories = await fetch (`/api/v1/categories`)
   categories = await categories.json();
-  setCategories(categories.programcategories)
+  setCategories(categories)
 }
 const getCategoryById = async (categoryId)=>{
   let category = await fetch (`/api/v1/categories/${categoryId}`);
   category = await category.json();
-  setCategory(category.programcategory)
+  setCategory(category.programcategory.name)
 }
 
 const values ={
