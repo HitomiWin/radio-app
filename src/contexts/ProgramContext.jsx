@@ -4,13 +4,14 @@ export const ProgramContext= createContext();
 const ProgramContextProvider=(props)=>{
   const [programs, setPrograms]= useState(null);
   const [program, setProgram]= useState(null);
+  const [programsByChannelId, setProgramsByChannelId]= useState(null);
 
 
   const getProgramsByChannelId = async (channelId)=>{
     let programs = await fetch(`/api/v1/programs/${channelId}`);
     programs = await  programs.json();
     let sorted =[...programs].sort((a,b)=>(a.name >b .name ? 1: -1))
-    setPrograms(sorted);
+    setProgramsByChannelId(sorted);
   }
 
   const getProgramByProgramId =async (programId)=>{
@@ -32,6 +33,7 @@ const ProgramContextProvider=(props)=>{
     program,
     getProgramByProgramId,
     getProgramsByCategory,
+    programsByChannelId
   }
 
   return (

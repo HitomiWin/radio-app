@@ -4,12 +4,15 @@
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  height:20vh;
+
 }
 .card:hover{
   cursor: pointer;
   transform: scale(1.02);
   box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
 }
+
 .menuList{
   background-color:rgba(211, 211, 211, 0.52) ;
   list-style-type: none;
@@ -44,7 +47,18 @@
     font-size:1.5rem;
     margin-right: 2rem;
   }
+  .card {
+  height:10vh;
+  }
 }
+@media only screen and (min-width: 768px) {
+  .card {
+    height:15vh;
+    }
+
+}
+
+
 /* programsByChannelId */
 .programs{
   margin-top:2rem;

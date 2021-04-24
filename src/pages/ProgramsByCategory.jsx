@@ -3,7 +3,9 @@ import { useHistory } from "react-router-dom"
 import { CategoryContext } from "../contexts/CategoryContext"
 import { ProgramContext } from "../contexts/ProgramContext"
 import { Card, Button, Container, Col, Row } from "react-bootstrap";
+import { Tag } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsByCategory.module.css"
+
 
 const ProgramsByCategory = (props) => {
   const { category, getCategoryById } = useContext( CategoryContext )
@@ -37,6 +39,10 @@ const ProgramsByCategory = (props) => {
         <Col xs={8} md={8} lg={8}>
         <Card.Body>
           <Card.Title>{program.name}</Card.Title>
+          <Card.Text>
+          <Tag color="gray" size={25} />
+            
+            {program.programcategory["name"]}</Card.Text>
         </Card.Body>
         </Col>
         </Row>

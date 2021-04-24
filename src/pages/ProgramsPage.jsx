@@ -13,12 +13,7 @@ const ProgramsPage=(props)=> {
   useEffect(() => {
     getChannelById(channelId)
   }, [])
-  useEffect(()=>{
-    getProgramsByChannelId(channelId);
-    let date = new Date()
-    date = date.getFullYear() + "-" + (date.getMonth()+1)  +"-" + date.getDate()
-    getChannelSchedule(channelId, date);
-  },[channelId])
+
 
   const handleOnclickSchedule =()=>{
     setShowPrograms(false)
@@ -41,7 +36,8 @@ const ProgramsPage=(props)=> {
   return (
     <div className={styles.programPage}>
     {singleChannel&& renderMenuBar()}
-    {showPrograms?< ProgramsByChannelId />:<ChannelSchedule />}
+    {showPrograms?< ProgramsByChannelId 
+    channelId={channelId}/>:<ChannelSchedule channelId={channelId}/>}
     </div>
   )
 }

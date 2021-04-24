@@ -2,16 +2,21 @@ import { useContext, useEffect, useState } from "react";
 import { ProgramContext } from "../contexts/ProgramContext"
 import {useHistory} from "react-router-dom"
 import { Card, Button, Container, Col, Row } from "react-bootstrap";
+import { Tag } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
-const ProgramsByChannelId=()=> {
-  const { programs , getProgramsByChannelId } = useContext( ProgramContext );
+const ProgramsByChannelId=(props)=> {
+  const { programsByChannelId , getProgramsByChannelId } = useContext( ProgramContext );
   const history =useHistory();
   const handleClick=(programId)=>{
     history.push(`/programs/allprogram/${programId}`)
-  }  
+  }
+  useEffect(()=>{
+    getProgramsByChannelId(props.channelId);
+  },[props.channelId])  
+
   const renderPrograms=()=>{
    return (
-     programs.map((program)=>(
+    programsByChannelId.map((program)=>(
       <Col key={program.id} xs={12} md={12} lg={6}   onClick={() => handleClick(program.id) }>
       <Card className={styles.card} >
       <Row>
@@ -21,6 +26,9 @@ const ProgramsByChannelId=()=> {
        <Col xs={8} md={8} lg={8}>
        <Card.Body>
          <Card.Title>{program.name}</Card.Title>
+         <Card.Text>
+          <Tag color="gray" size={25} />
+           {program.channel["name"]} </Card.Text>
        </Card.Body>
        </Col>
        </Row>
@@ -35,7 +43,7 @@ const ProgramsByChannelId=()=> {
       <hr />
       <Container >
       <Row >      
-      {programs && renderPrograms()}
+      {programsByChannelId && renderPrograms()}
       </Row> 
       </Container>
     </div>

@@ -6,6 +6,7 @@ const ChannelContextProvider = (props) => {
   const [channels, setChannels] = useState(null);
   const [singleChannel, setSingleChannel] = useState(null);
   const [schedule, setSchedule] = useState(null);
+  
   useEffect(() => {
     getAllChannels();
   }, []);
