@@ -17,12 +17,18 @@ const getProgramsByChannelId = async(req, res)=>{
 const getProgramById = async (req, res)=>{
   let program = await fetch(`http://api.sr.se/api/v2/programs/${req.params.programId}?${json}`)
   program = await program.json()
-  res.json(program)
+  res.json(program.program)
+}
+const getProgramsByCategories = async(req,res)=>{
+  let programs = await fetch(`http://api.sr.se/api/v2/programs/index?${json}&${paginationFalse}&programcategoryid=${req.params.categoryId}`)
+  programs = await programs.json()
+  res.json(programs.programs)
 }
 
 module.exports ={
 getAllPrograms,
 getProgramsByChannelId,
-getProgramById
+getProgramById,
+getProgramsByCategories
 
 }

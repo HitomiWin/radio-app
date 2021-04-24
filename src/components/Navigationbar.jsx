@@ -1,7 +1,21 @@
+import { useContext } from "react"
+import { useHistory } from "react-router-dom"
+import { CategoryContext} from "../contexts/CategoryContext";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom"
 import styles from "../css/Navbar.module.css";
-function Navigationbar() {
+const Navigationbar=()=> {
+  const { categories }=useContext(CategoryContext);
+  const history = useHistory();
+  const handleOnClick=(categoryId)=>{ 
+    history.push(`/programs/categories/${categoryId}`)
+  }
+  const renderNavDropDownItem =()=>{
+    return categories.map((category)=>
+    <NavDropdown.Item key={category.id} onClick={()=>{handleOnClick(category.id)}}>{category.name}</NavDropdown.Item>
+    )
+  }
+  
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
     <Navbar.Brand>
@@ -12,7 +26,7 @@ function Navigationbar() {
       <Nav className="ml-auto pr-md-5">
         <NavLink className ={styles.link } to="/" >Kanaler</NavLink>
         <NavDropdown className="pr-md-5" title="Kategorier" id="collasible-nav-dropdown">
-          <NavDropdown.Item >P1</NavDropdown.Item>
+         {categories&& renderNavDropDownItem()}
         </NavDropdown>
         <NavLink className ={styles.link } to="/" >Mina Favoriter</NavLink>
         <NavLink className ={styles.link } to="/" >Login</NavLink>

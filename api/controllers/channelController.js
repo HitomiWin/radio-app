@@ -13,7 +13,7 @@ const getAllChannels = async (req, res) => {
  
    if(channels.channels.length>0){
      console.log("Runs after the query")
-     res.json(channels);
+     res.json(channels.channels);
    }
 };
 
