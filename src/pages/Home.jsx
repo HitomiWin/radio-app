@@ -12,7 +12,7 @@ function Home() {
   };
   const renderChannels = () => {
     return channels.map((channel) => (
-        <Card key={channel.id} onClick={() => handleClick(channel.id) }>
+        <Card key={channel.id} className={styles.card} onClick={() => handleClick(channel.id) }>
          <Row className={styles.row}>
           <Col xs={3} sm={3} lg={3} style={{padding:"1.25rem"}}>
             <Card.Img src={channel.image} alt={"image"} />

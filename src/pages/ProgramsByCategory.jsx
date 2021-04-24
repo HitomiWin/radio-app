@@ -29,7 +29,7 @@ const ProgramsByCategory = (props) => {
     return (
       programs.map((program)=>(
        <Col key={program.id} xs={12} md={12} lg={6}   onClick={() => handleClick(program.id) }>
-       <Card  >
+       <Card className={styles.card} >
        <Row>
         <Col xs={3} md={3} lg={3} style={{padding:"1.25rem"}}>
           <Card.Img src={program.programimagewide} alt={"program image"}/>
