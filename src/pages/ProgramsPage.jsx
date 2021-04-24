@@ -9,16 +9,18 @@ const ProgramsPage=(props)=> {
   const { channelId } = props.match.params;
   const [ showPrograms, setShowPrograms ]=useState(true);
   const { getProgramsByChannelId } = useContext( ProgramContext );
-  
+
   useEffect(() => {
-   getChannelById(channelId)
+    getChannelById(channelId)
   }, [])
-   useEffect(()=>{
+  useEffect(()=>{
     getProgramsByChannelId(channelId);
+    let date = new Date()
+    date = date.getFullYear() + "-" + (date.getMonth()+1)  +"-" + date.getDate()
+    getChannelSchedule(channelId, date);
   },[channelId])
 
   const handleOnclickSchedule =()=>{
-    getChannelSchedule(channelId);
     setShowPrograms(false)
   }
   const handleOnclickProgram=()=>{

@@ -3,7 +3,7 @@ import { ChannelContext } from "../contexts/ChannelContext"
 
 const ChannelSchedule=()=>{
   const { schedule }=useContext(ChannelContext);
-
+  console.log(schedule)
   return(
     <div>Hej</div>
   )
