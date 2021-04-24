@@ -5,7 +5,7 @@ const ChannelSchedule=()=>{
   const { schedule }=useContext(ChannelContext);
   console.log(schedule)
   return(
-    <div>Hej</div>
+    <div>{schedule.map((episode)=>(<p>{episode.title}</p>))}</div>
   )
 }
 
