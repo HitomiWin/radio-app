@@ -5,8 +5,7 @@ const programController = require("../controllers/programController");
 router.get("/allprogram",programController.getAllPrograms);
 router.get("/:channelId",programController.getProgramsByChannelId);
 router.get("/allprogram/:programId",programController.getProgramById);
-
 router.get("/categories/:categoryId",programController.getProgramsByCategories);
-
+router.get("/episodes/:programId",programController.getEpisodesByProgramId);
 
 module.exports = router;

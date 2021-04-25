@@ -5,7 +5,7 @@ const ProgramContextProvider=(props)=>{
   const [programs, setPrograms]= useState(null);
   const [program, setProgram]= useState(null);
   const [programsByChannelId, setProgramsByChannelId]= useState(null);
-
+  const [episodes, setEpisodes] = useState(null)
 
   const getProgramsByChannelId = async (channelId)=>{
     let programs = await fetch(`/api/v1/programs/${channelId}`);
@@ -25,6 +25,12 @@ const ProgramContextProvider=(props)=>{
     let sorted =[...programs].sort((a,b)=>(a.name >b .name ? 1: -1))
     setPrograms(sorted);
   }
+
+  const getEpisodesByProgramId = async (programId)=>{
+    let episodes = await fetch(`api/v1/programs/episodes/${programId}`);
+    episodes = await episodes.json();
+    
+  }
   
 
   const values ={
@@ -33,7 +39,9 @@ const ProgramContextProvider=(props)=>{
     program,
     getProgramByProgramId,
     getProgramsByCategory,
-    programsByChannelId
+    programsByChannelId,
+    episodes,
+    getEpisodesByProgramId
   }
 
   return (

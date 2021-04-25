@@ -1,0 +1,19 @@
+/*Login.js and Register.js style*/
+.errorBox {
+  display: none;
+}
+
+.errorBox.active {
+  display: block;
+}
+
+.errorBox.inactive {
+  display: none
+}
+
+.singInButton {
+  background-color: #FE7F50 ;
+  margin-top:2rem;
+  width: 70%;
+  border: none;
+}

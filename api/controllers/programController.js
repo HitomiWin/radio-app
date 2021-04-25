@@ -25,10 +25,17 @@ const getProgramsByCategories = async(req,res)=>{
   res.json(programs.programs)
 }
 
+const getEpisodesByProgramId= async (req, res)=>{
+  let episodes =await fetch(`https://api.sr.se/api/v2/episodes/index?programid=${req.params.programId}&${json}&${paginationFalse}`)
+  episodes = await episodes.json()
+  res.json(episodes.episodes)
+}
+
 module.exports ={
 getAllPrograms,
 getProgramsByChannelId,
 getProgramById,
-getProgramsByCategories
+getProgramsByCategories,
+getEpisodesByProgramId
 
 }

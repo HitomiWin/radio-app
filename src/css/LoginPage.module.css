@@ -1,0 +1,12 @@
+.loginPage{
+  min-height: 80vh;
+}
+.toggleText{
+  cursor: pointer;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.toggleText:hover{
+  color:#FE7F50
+}

@@ -24,7 +24,7 @@ const ProgramsPage=(props)=> {
   
 
  const renderMenuBar=()=>{
-   return (         
+   return (   
     <ul className={styles. menuList} >
       <li className={styles.listItem}><img className={styles.channelImage} src={singleChannel.image} /></li>
       <li className={styles.listItem} onClick={()=>handleOnclickSchedule()}>Tablå</li>
@@ -35,7 +35,7 @@ const ProgramsPage=(props)=> {
    
   return (
     <div className={styles.programPage}>
-    {singleChannel&& renderMenuBar()}
+    {singleChannel? renderMenuBar():<h1>Loading...</h1>}
     {showPrograms?< ProgramsByChannelId 
     channelId={channelId}/>:<ChannelSchedule channelId={channelId}/>}
     </div>

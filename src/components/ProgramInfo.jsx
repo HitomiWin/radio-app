@@ -5,7 +5,6 @@ import { Tag } from "react-bootstrap-icons";
 import styles from "../css/ProgramInfo.module.css";
 const ProgramInfo = () => {
   const { program } = useContext(ProgramContext);
-  console.log(program);
   const renderProgram = () => {
     return (
       <Card className={styles.card}>
