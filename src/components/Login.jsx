@@ -33,12 +33,12 @@ const Login = ()=>{
   };
 
   return <div>
-    <Container>
-     <Card>
-       <Card.Header as="h5" className="text-center">Logga In</Card.Header>
+    <Container className="mt-5">
+     <Card >
+       <Card.Header as="h4" className="text-center">Logga In</Card.Header>
        <Card.Body>
         <Form onSubmit={(e)=>{handleSubmit(e)}}>
-                <Alert variant={"danger"} className={`${styles.errorBox} ${error ? styles.active : styles.inactive}`}>You did not enter the correct credentials</Alert>
+                <p className={`${styles.errorBox} ${error ? styles.active : styles.inactive}`}> You did not enter the correct credentials</p>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control onChange={ handleEmailChange } type="email" placeholder="Enter email" required />
@@ -48,7 +48,7 @@ const Login = ()=>{
                     <Form.Control onChange={ handlePasswordChange } type="password" placeholder="Password" required />
                 </Form.Group>
                 <Container className="text-center">
-                    <Button className={styles.singInButton} variant="primary" type="submit">
+                    <Button className={styles.singInButton} variant="secondary" type="submit">
                         Logga in
                     </Button>
                 </Container>

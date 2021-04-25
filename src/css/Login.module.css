@@ -1,10 +1,14 @@
 /*Login.js and Register.js style*/
+.card {
+  margin-top: 1rem;
+}
 .errorBox {
   display: none;
 }
 
 .errorBox.active {
   display: block;
+  color:red
 }
 
 .errorBox.inactive {
@@ -12,8 +16,7 @@
 }
 
 .singInButton {
-  background-color: #FE7F50 ;
   margin-top:2rem;
-  width: 70%;
+  width: 60%;
   border: none;
 }

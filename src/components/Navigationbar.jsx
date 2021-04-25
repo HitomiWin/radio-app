@@ -34,7 +34,7 @@ const Navigationbar=()=> {
          { categories && renderNavDropDownItem() }
         </NavDropdown>
         { user? <NavLink className ={ styles.link } to="/" >Mina Favoriter</NavLink> :""}
-        { user? <NavLink to ="/" onClick={()=>{ handleOnclickLogout() }} className ={styles.link }>Logga Uu</NavLink>:<NavLink className ={ styles.link } to="/users/login" >Logga in</NavLink> }
+        { user? <NavLink to ="/" onClick={()=>{ handleOnclickLogout() }} className ={styles.link }>Logga ut</NavLink>:<NavLink className ={ styles.link } to="/users/login" >Logga in</NavLink> }
       </Nav>
     </Navbar.Collapse>
   </Navbar>
