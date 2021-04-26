@@ -33,15 +33,23 @@
 }
 
 .listItem:hover{
-  
+  cursor:pointer;
   text-decoration: underline;
   color:black;
-  font-weight: 700;
-  font-size:1.5rem;
+  background-color: gray;
 }
 
 .time {
   font-weight:800;
   text-align: center;
   padding-top: 1.25rem;
+}
+.calendar {
+  display:inline-block;
+}
+
+.calendar:hover{
+  display:flex;
+  cursor:pointer;
+  background-color: gray;
 }
