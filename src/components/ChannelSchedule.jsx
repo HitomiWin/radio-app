@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ChannelContext } from "../contexts/ChannelContext";
 import Schedule from "./Schedule"
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Dropdown} from "react-bootstrap";
 import { Calendar3 } from "react-bootstrap-icons"
 import Calendar from "react-calendar"
 import 'react-calendar/dist/Calendar.css';
@@ -52,9 +52,9 @@ const ChannelSchedule = (props) => {
     tomorrowDate = tomorrowDate.getFullYear() + "-" + (tomorrowDate.getMonth()+1)  +"-" + (tomorrowDate.getDate());
     setDate(tomorrowDate)  
   };
-  const handleCalenderOnClick=()=>{
-    setShowCalendar(!showCalendar);
-  }
+  // const handleCalenderOnClick=()=>{
+  //   setShowCalendar(!showCalendar);
+  // }
   
   const handlePickDateOnClick=(value,e)=>{
     setToday(false);
@@ -76,24 +76,25 @@ const ChannelSchedule = (props) => {
         <li className={listItem}>
           <span className={` ${tomorrow ? active : inactive}`} onClick={()=>{handleOnclickTomorrow()}}>Imorgon</span>
         </li>
-        <li className={calendar}  onClick={()=>{handleCalenderOnClick()}}>
-           <Calendar3 />
-           <p>Välj datum</p>
-        </li>
-        
+        <Dropdown>
+            <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+            <Calendar3 />  Välj Datum
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+            <Dropdown.Item >
+            <Calendar locale="sv-SE" calendarType="US" onClickDay={(value,e)=>handlePickDateOnClick(value,e)} onChange={onChange} onClick={onClick} value={value} />
+            </Dropdown.Item>
+    
+              </Dropdown.Menu>
+            </Dropdown>
       </ul>
     );
   };
-  const renderCalendar=()=>{
-    return (
-      <Calendar locale="sv-SE" calendarType="US" onClickDay={(value,e)=>handlePickDateOnClick(value,e)} onChange={onChange} onClick={onClick} value={value} />
-    )
-  }
+
 
   return (
     <div className={`${scheduleContainer}`}>
       <div className={`${menubar}`}>{renderMenuBar()}</div>
-      {showCalendar && renderCalendar()}
       <Container>
         <h2 className="test-center">{date}</h2>
         <Row>{schedule && <Schedule schedule={schedule} />}</Row>
