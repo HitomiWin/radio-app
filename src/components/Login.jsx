@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import { useHistory } from "react-router-dom"
 import { UserContext } from "../contexts/UserContext"
 import styles from "../css/Login.module.css"
-import { Alert, Container, Form, Button, Card } from "react-bootstrap"
+import {  Container, Form, Button, Card } from "react-bootstrap"
 
 const Login = ()=>{
   const { login} =useContext(UserContext);//login is function to be logedin

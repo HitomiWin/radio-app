@@ -22,7 +22,6 @@ const ProgramsPage=(props)=> {
     setShowPrograms(true)
   }
   
-
  const renderMenuBar=()=>{
    return (   
     <ul className={styles. menuList} >

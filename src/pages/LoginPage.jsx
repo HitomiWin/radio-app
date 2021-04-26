@@ -1,11 +1,12 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from "../contexts/UserContext"
 import Login from "../components/Login";
 import Register from "../components/Register";
 import {loginPage, toggleText}from "../css/LoginPage.module.css";
 import { Container } from "react-bootstrap" 
 const LoginPage = () => {
 
-  const [showLogin, setShowLogin] =useState(true);
+const {showLogin, setShowLogin} =useContext( UserContext )
 
  const toggle = () => {
     setShowLogin(!showLogin)

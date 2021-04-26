@@ -3,7 +3,7 @@ export const UserContext = createContext();
 
 const UserContextProvider =(props)=>{
   const [user, setUser] = useState(null);
-  const [logedIn, setLogedIn] = useState(null)
+  const [showLogin, setShowLogin] =useState(true);
 
   useEffect(() => {
     getUser();
@@ -57,7 +57,9 @@ const UserContextProvider =(props)=>{
     getUser,
     login,
     logout,
-    register
+    register,
+    showLogin,
+    setShowLogin
   }
 
   return(
