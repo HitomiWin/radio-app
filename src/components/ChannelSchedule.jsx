@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { ChannelContext } from "../contexts/ChannelContext";
+import Schedule from "./Schedule"
 import { Card, Container, Col, Row } from "react-bootstrap";
 import {
-  card,
   menuList,
   listItem,
-  time,
   scheduleContainer,
   menubar,
   active,
@@ -62,35 +61,12 @@ const ChannelSchedule = (props) => {
       </ul>
     );
   };
-  const renderSchedule = () => {
-    return schedule.map((episode, i) => (
-      <Col key={i} xs={12}>
-        <Card className={card}>
-          <Row>
-            <Col xs={12} md={2}>
-              <div className={`${time}`}>
-                {episode.starttimeutc.slice(11, 16)}
-              </div>
-            </Col>
-            <Col xs={12} md={2} style={{ padding: "1.25rem" }}>
-              <Card.Img src={episode.imageurl} alt={"episode image"} />
-            </Col>
-            <Col xs={12} md={8}>
-              <Card.Body>
-                <Card.Title>{episode.title}</Card.Title>
-                <Card.Text>{episode.description}</Card.Text>
-              </Card.Body>
-            </Col>
-          </Row>
-        </Card>
-      </Col>
-    ));
-  };
+
   return (
     <div className={`${scheduleContainer}`}>
       <div className={`${menubar}`}>{renderMenuBar()}</div>
       <Container>
-        <Row>{schedule && renderSchedule()}</Row>
+        <Row>{schedule && <Schedule schedule={schedule} />}</Row>
       </Container>
     </div>
   );
