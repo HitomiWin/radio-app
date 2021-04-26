@@ -1,10 +1,13 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { ChannelContext } from "../contexts/ChannelContext";
-import { Card, Button, Container, Col, Row } from "react-bootstrap";
+import { UserContext } from "../contexts/UserContext"
+import { Card, Container, Col, Row } from "react-bootstrap";
+import { Heart } from 'react-bootstrap-icons';
 import styles from "../css/Home.module.css";
 function Home() {
   const { channels } = useContext(ChannelContext);
+  const { user } = useContext ( UserContext )
   const history = useHistory();
 
   const handleClick = (channelId) => {
@@ -14,17 +17,17 @@ function Home() {
     return channels.map((channel) => (
         <Card key={channel.id} className={styles.card} onClick={() => handleClick(channel.id) }>
          <Row className={styles.row}>
-          <Col xs={3} sm={3} lg={3} style={{padding:"1.25rem"}}>
+          <Col xs={3}  style={{padding:"1.25rem"}}>
             <Card.Img src={channel.image} alt={"image"} />
           </Col>
-          <Col xs={9} sm={9} lg={9}>
+          <Col xs={7} >
           <Card.Body>
-            <Card.Title>{channel.name}</Card.Title>
+            <Card.Title>{channel.name} </Card.Title>
             <Card.Text>{channel.tagline}</Card.Text>
-            <Button variant="secondary" >
-              Tablå
-            </Button>
           </Card.Body>
+          </Col>
+          <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
+          { user ? <Heart color="gray" size={25} / > : ""}
           </Col>
           </Row>
         </Card>

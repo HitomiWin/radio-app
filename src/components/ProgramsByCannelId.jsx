@@ -1,11 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { ProgramContext } from "../contexts/ProgramContext"
+import { ProgramContext } from "../contexts/ProgramContext";
+import { UserContext } from "../contexts/UserContext";
 import {useHistory} from "react-router-dom"
 import { Card, Button, Container, Col, Row } from "react-bootstrap";
-import { Tag } from 'react-bootstrap-icons';
+import { Tag, Heart } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
 const ProgramsByChannelId=(props)=> {
   const { programsByChannelId , getProgramsByChannelId } = useContext( ProgramContext );
+  const { user } = useContext ( UserContext );
   const history =useHistory();
   const handleClick=(programId)=>{
     history.push(`/programs/allprogram/${programId}`)
@@ -20,10 +22,10 @@ const ProgramsByChannelId=(props)=> {
       <Col key={program.id} xs={12} md={12} lg={6}   onClick={() => handleClick(program.id) }>
       <Card className={styles.card} >
       <Row>
-       <Col xs={3} md={3} lg={3} style={{padding:"1.25rem"}}>
+       <Col xs={3} style={{padding:"1.25rem"}}>
          <Card.Img src={program.programimagewide} alt={"program image"}/>
        </Col>
-       <Col xs={8} md={8} lg={8}>
+       <Col xs={7} >
        <Card.Body>
          <Card.Title>{program.name}</Card.Title>
          <Card.Text>
@@ -31,6 +33,10 @@ const ProgramsByChannelId=(props)=> {
            {program.channel["name"]} </Card.Text>
        </Card.Body>
        </Col>
+       {user &&
+       <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
+           <Heart color="gray" size={25}/ > 
+        </Col> }    
        </Row>
      </Card>
       </Col>

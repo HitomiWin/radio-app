@@ -68,64 +68,29 @@ const Register = () => {
             Register
           </Card.Header>
           <Card.Body>
-            <Form
-              onSubmit={(e) => {
-                handleSubmit(e);
-              }}
-            >
-              <p
-                className={`${styles.errorBox} ${
-                  error ? styles.active : styles.inactive
-                }`}
-              >
-                {" "}
-                This email already exist
+            <Form onSubmit={(e) => { handleSubmit(e);}}>
+              <p className={`${styles.errorBox} ${error ? styles.active : styles.inactive}`}>{" "}This email already exist
               </p>
               <Form.Group>
                 <Form.Label>User Name</Form.Label>
-                <Form.Control
-                  onChange={ handleUserNameChange }
-                  type="text"
-                  placeholder="Enter username"
-                  required
-                />
+                <Form.Control onChange={ handleUserNameChange } type="text" placeholder="Enter username" required />
               </Form.Group>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  onChange={handleEmailChange}
-                  type="email"
-                  placeholder="Enter email"
-                  required
-                />
+                <Form.Control onChange={handleEmailChange} type="email"  placeholder="Enter email"  required  />
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  onChange={handlePasswordChange}
-                  type="password"
-                  placeholder="Please enter more than 4 characters" minLength="4" required
-                />
+                <Form.Control  onChange={handlePasswordChange} type="password" placeholder="Please enter more than 4 characters" minLength="4" required />
               </Form.Group>
               <Form.Group controlId="formConfirmPassword">
                 <Form.Label>Confirm the password</Form.Label>
                 <Form.Control
-                  className={
-                    inputDefault ? "" : isValid ? "is-valid" : "is-invalid"
-                  }
-                  onChange={checkPassword}
-                  type="password"
-                  name="confirm"
-                  placeholder="Confirm Password"
-                  required
-                />
+                  className={inputDefault ? "" : isValid ? "is-valid" : "is-invalid"}
+                  onChange={checkPassword}type="password" name="confirm"  placeholder="Confirm Password" required />
               </Form.Group>
               <Container className="text-center">
-                <Button
-                  className={styles.singInButton}
-                  variant="secondary"
-                  type="submit"
-                >
+                <Button className={styles.singInButton} variant="secondary" type="submit">
                   Create Account
                 </Button>
               </Container>

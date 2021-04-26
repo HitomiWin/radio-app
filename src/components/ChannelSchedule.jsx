@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ChannelContext } from "../contexts/ChannelContext";
 import Schedule from "./Schedule"
-import { Card, Container, Col, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import {
   menuList,
   listItem,
