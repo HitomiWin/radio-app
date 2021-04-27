@@ -7,6 +7,7 @@ const channelRoutes = require("./routes/channelRoutes.js");
 const programRoutes = require("./routes/programRoutes.js");
 const categoryRoutes = require("./routes/categoryRoutes.js");
 const userRoutes = require("./routes/userRoutes.js");
+const favoriteRoutes = require("./routes/favoriteRoutes.js");
 
 const app = express();
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use("/api/v1/channels", channelRoutes);
 app.use("/api/v1/programs", programRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/favorite", favoriteRoutes);
 
 // Serve static files, makes the frontend files "available" to the backend
 app.use(express.static(path.join(__dirname, "../build")));

@@ -1,7 +1,10 @@
 // This module allows me to make frontend fetches from my backend.
 const fetch = require("node-fetch");
+const sqlite3 = require("sqlite3");
 const json = "format=json";
 const paginationFalse = "pagination=false";
+const path = require("path");
+const db = new sqlite3.Database(path.join(__dirname, "../myRadioAppDB.db"));
 
 const utils = require("../core/utilities");
 
@@ -42,6 +45,13 @@ const getChannelSchedule = async (req, res) => {
 
   res.json(channelSchedule.schedule);
 };
+// const addChannelToFavorite = async (req, res )=>{
+//   let query =/*sql*/`INSERT INTO usersXchannels (userId, channelId) VALUES ($userId, $channelId)`
+
+//   let params ={
+//     $userId:req.session.user.
+//   }
+// }
 
 
 module.exports = {
