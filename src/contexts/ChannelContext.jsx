@@ -8,6 +8,7 @@ const ChannelContextProvider = (props) => {
   const [schedule, setSchedule] = useState(null);
   
   useEffect(() => {
+    // eslint-disable-next-line
     getAllChannels();
   }, []);
 
@@ -32,6 +33,7 @@ const ChannelContextProvider = (props) => {
     setSchedule(schedule);
   }
 
+ 
   const values = {
     channels,
     singleChannel,

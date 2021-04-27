@@ -26,7 +26,7 @@ app.use("/api/v1/channels", channelRoutes);
 app.use("/api/v1/programs", programRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/users", userRoutes);
-app.use("/api/v1/favorite", favoriteRoutes);
+app.use("/api/v1/favorites", favoriteRoutes);
 
 // Serve static files, makes the frontend files "available" to the backend
 app.use(express.static(path.join(__dirname, "../build")));

@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ProgramContext } from "../contexts/ProgramContext";
 import { UserContext } from "../contexts/UserContext";
 import {useHistory} from "react-router-dom"
-import { Card, Button, Container, Col, Row } from "react-bootstrap";
+import { Card,  Container, Col, Row } from "react-bootstrap";
 import { Tag, Heart } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
 const ProgramsByChannelId=(props)=> {
@@ -14,6 +14,7 @@ const ProgramsByChannelId=(props)=> {
   }
   useEffect(()=>{
     getProgramsByChannelId(props.channelId);
+         // eslint-disable-next-line
   },[props.channelId])  
 
   const renderPrograms=()=>{

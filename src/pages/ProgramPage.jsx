@@ -9,12 +9,13 @@ const ProgramPage=(props)=>{
 
    useEffect (()=>{
       getProgramByProgramId(programId)
+           // eslint-disable-next-line
    },[])
 
    const renderMenuBar=()=>{
     return (         
-     <ul className={styles. menuList} >
-       <li className={styles.listItem}><img className={styles.channelImage} src={program.programimagewide} /></li>
+     <ul className={styles.menuList} >
+       <li className={styles.listItem}><img className={styles.channelImage} src={program.programimagewide} alt="program" /></li>
        <li className={styles.programName}>{program.name}</li>
      </ul>
     )

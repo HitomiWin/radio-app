@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ProgramContext } from "../contexts/ProgramContext";
 import { Card } from "react-bootstrap";
-import { Tag } from "react-bootstrap-icons";
+// import { Tag } from "react-bootstrap-icons";
 import styles from "../css/ProgramInfo.module.css";
 const ProgramInfo = () => {
   const { program } = useContext(ProgramContext);

@@ -2,7 +2,7 @@ import { useContext, useEffect} from "react"
 import { useHistory } from "react-router-dom"
 import { CategoryContext } from "../contexts/CategoryContext"
 import { ProgramContext } from "../contexts/ProgramContext"
-import { Card, Button, Container, Col, Row } from "react-bootstrap";
+import { Card, Container, Col, Row } from "react-bootstrap";
 import { Tag } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsByCategory.module.css"
 
@@ -15,6 +15,7 @@ const ProgramsByCategory = (props) => {
   useEffect(() => {
     getCategoryById(categoryId)
     getProgramsByCategory(categoryId);
+         // eslint-disable-next-line
   }, [categoryId]);
  
   const handleClick=(programId)=>{
@@ -62,7 +63,5 @@ const ProgramsByCategory = (props) => {
        </Container>
      </div>
    )
-
-
 };
 export default ProgramsByCategory;

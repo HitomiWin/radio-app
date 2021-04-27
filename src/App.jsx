@@ -3,6 +3,7 @@ import Navbar from "./components/Navigationbar";
 import ChannelContextProvider from "./contexts/ChannelContext";
 import ProgramContextProvider from "./contexts/ProgramContext";
 import CategoryContextProvider from "./contexts/CategoryContext";
+import FavoriteContextProvider from "./contexts/FavoriteContext"
 import Home from "./pages/Home";
 import ProgramPage from "./pages/ProgramPage";
 import ProgramsPage from "./pages/ProgramsPage";
@@ -17,13 +18,15 @@ function App() {
           <CategoryContextProvider>
             <ProgramContextProvider>
               <ChannelContextProvider>
-                <Navbar />
-                <Route exact path="/" component={Home} />
-                <Route exact path="/programs/:channelId" component={ProgramsPage} />
-                <Route
-                  exact path="/programs/allprogram/:programId" component={ProgramPage} />
-                <Route exact path="/programs/categories/:categoryId" component={ProgramsByCategory} />
-                <Route exact path="/users/login" component={LoginPage} />
+                <FavoriteContextProvider>
+                  <Navbar />
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/programs/:channelId" component={ProgramsPage} />
+                  <Route
+                    exact path="/programs/allprogram/:programId" component={ProgramPage} />
+                  <Route exact path="/programs/categories/:categoryId" component={ProgramsByCategory} />
+                  <Route exact path="/users/login" component={LoginPage} />
+                </FavoriteContextProvider>
               </ChannelContextProvider>
             </ProgramContextProvider>
           </CategoryContextProvider>

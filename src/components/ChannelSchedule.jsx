@@ -12,20 +12,19 @@ import {
   menubar,
   active,
   inactive,
-  calendar
+
 } from "../css/ChannelSchedule.module.css";
 const ChannelSchedule = (props) => {
   const { schedule, getChannelSchedule } = useContext(ChannelContext);
   const [today, setToday] = useState(true);
   const [tomorrow, setTomorrow] = useState(false);
   const [yesterday, setYesterday] = useState(false);
-  const [showCalendar, setShowCalendar] = useState(false);
   const [date, setDate] = useState(new Date().getFullYear() + "-" + (new Date().getMonth()+1)  +"-" + new Date().getDate());
   const [value, onClick, onChange] = useState(new Date());
   
   useEffect(()=>{
     getChannelSchedule(props.channelId, date);
-    setShowCalendar(false)
+         // eslint-disable-next-line
   },[props.channelId,date]);
 
   const handleOnclickYesterday=()=>{
@@ -52,9 +51,6 @@ const ChannelSchedule = (props) => {
     tomorrowDate = tomorrowDate.getFullYear() + "-" + (tomorrowDate.getMonth()+1)  +"-" + (tomorrowDate.getDate());
     setDate(tomorrowDate)  
   };
-  // const handleCalenderOnClick=()=>{
-  //   setShowCalendar(!showCalendar);
-  // }
   
   const handlePickDateOnClick=(value,e)=>{
     setToday(false);

@@ -1,16 +1,16 @@
-import { createContext, useState, useEffect } from "react"
+import { createContext, useState} from "react"
 export const ProgramContext= createContext();
 
 const ProgramContextProvider=(props)=>{
   const [programs, setPrograms]= useState(null);
   const [program, setProgram]= useState(null);
   const [programsByChannelId, setProgramsByChannelId]= useState(null);
-  const [episodes, setEpisodes] = useState(null)
+  const [episodes] = useState(null)
 
   const getProgramsByChannelId = async (channelId)=>{
     let programs = await fetch(`/api/v1/programs/${channelId}`);
     programs = await  programs.json();
-    let sorted =[...programs].sort((a,b)=>(a.name >b .name ? 1: -1))
+    let sorted =[...programs].sort((a,b)=>(a.name > b.name ? 1: -1))
     setProgramsByChannelId(sorted);
   }
 
@@ -22,16 +22,9 @@ const ProgramContextProvider=(props)=>{
   const getProgramsByCategory = async (categoryId)=>{
     let programs = await fetch(`/api/v1//programs/categories/${categoryId}`);
     programs = await programs.json();
-    let sorted =[...programs].sort((a,b)=>(a.name >b .name ? 1: -1))
+    let sorted =[...programs].sort((a,b)=>(a.name >b.name ? 1: -1))
     setPrograms(sorted);
   }
-
-  const getEpisodesByProgramId = async (programId)=>{
-    let episodes = await fetch(`api/v1/programs/episodes/${programId}`);
-    episodes = await episodes.json();
-    
-  }
-  
 
   const values ={
     programs,
@@ -41,7 +34,7 @@ const ProgramContextProvider=(props)=>{
     getProgramsByCategory,
     programsByChannelId,
     episodes,
-    getEpisodesByProgramId
+
   }
 
   return (

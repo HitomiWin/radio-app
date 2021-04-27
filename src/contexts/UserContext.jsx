@@ -6,6 +6,7 @@ const UserContextProvider =(props)=>{
   const [showLogin, setShowLogin] =useState(true);
 
   useEffect(() => {
+    // eslint-disable-next-line
     getUser();
   }, [])
 
@@ -17,8 +18,6 @@ const UserContextProvider =(props)=>{
   }
 
   const login = async (userInfo)=>{
-    let isMember=false
-    if(!isMember){
       let result = await fetch("/api/v1/users/login",{
         method: "POST",
         headers: {
@@ -30,7 +29,7 @@ const UserContextProvider =(props)=>{
       console.log(result)
       getUser()
       return result
-    } 
+
   }
    
   const logout = async ()=>{

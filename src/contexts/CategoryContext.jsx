@@ -4,10 +4,11 @@ export const CategoryContext =createContext();
 const CategoryContextProvider=(props)=>{
 const [categories, setCategories]=useState(null);
 const [category, setCategory]=useState(null);
+
 useEffect(() => {
+  // eslint-disable-next-line
   getAllCategories()
 }, [])
-
 
 const getAllCategories= async ()=>{
   let categories = await fetch (`/api/v1/categories`)
