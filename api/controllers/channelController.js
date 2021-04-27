@@ -4,7 +4,7 @@ const sqlite3 = require("sqlite3");
 const json = "format=json";
 const paginationFalse = "pagination=false";
 const path = require("path");
-const db = new sqlite3.Database(path.join(__dirname, "../myRadioAppDB.db"));
+const db = new sqlite3.Database(path.join(__dirname, "../../myRadioAppDB.db"));
 
 const utils = require("../core/utilities");
 
@@ -45,17 +45,49 @@ const getChannelSchedule = async (req, res) => {
 
   res.json(channelSchedule.schedule);
 };
-// const addChannelToFavorite = async (req, res )=>{
-//   let query =/*sql*/`INSERT INTO usersXchannels (userId, channelId) VALUES ($userId, $channelId)`
 
-//   let params ={
-//     $userId:req.session.user.
-//   }
-// }
+const addChannelToFavoriter = async (req, res )=>{
+  let query =/*sql*/`SELECT * FROM usersXchannels WHERE  channelId=$channelId`;
+  let params = {
+    $channelId : req.body.channelId
+  }
+  db.get(query, params, (err, result ) =>{
+    console.log("result :",result)
+    if(result){
+      res.json({
+        error:" The channel already exists"
+      })
+    } else {
+
+       query =/*sql*/`INSERT INTO usersXchannels (userId, channelId) VALUES ($userId, $channelId)`
+    
+       params ={
+        $userId:req.session.user.userId,
+        $channelId:req.body.channelId,   
+      }
+      db.run(query, params, function (err) {
+        if (err) {
+          res.status(400).json({
+            error: err
+          });
+          return;
+        }
+        console.log(this.lastID);
+        res.json({
+          success: "Channel added successfully",
+          lastID: this.lastID
+        })
+      })
+    }
+    
+  })
+
+}
 
 
 module.exports = {
   getAllChannels,
   getChannelById,
   getChannelSchedule,
+  addChannelToFavoriter
 };

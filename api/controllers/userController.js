@@ -1,7 +1,7 @@
 const sqlite3 = require("sqlite3");
 const Encrypt = require("../Encrypt")
 const path = require("path");
-const db = new sqlite3.Database(path.join(__dirname, "../myRadioAppDB.db"));
+const db = new sqlite3.Database(path.join(__dirname, "../../myRadioAppDB.db"));
 
 // Route handles goes underneath here...
 const whoami = (req, res) => {
