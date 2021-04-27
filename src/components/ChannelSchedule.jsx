@@ -79,8 +79,7 @@ const ChannelSchedule = (props) => {
             <Dropdown.Menu>
             <Dropdown.Item >
             <Calendar locale="sv-SE" calendarType="US" onClickDay={(value,e)=>handlePickDateOnClick(value,e)} onChange={onChange} onClick={onClick} value={value} />
-            </Dropdown.Item>
-    
+            </Dropdown.Item>  
               </Dropdown.Menu>
             </Dropdown>
       </ul>

@@ -9,7 +9,7 @@ import styles from "../css/Home.module.css";
 
 function Home() {
   const { channels } = useContext(ChannelContext);
-  const { addCahnnelToFavoriter } = useContext( FavoriteContext );
+  const { addCahnnelToFavorites } = useContext( FavoriteContext );
   const { user } = useContext ( UserContext );
   const history = useHistory();
 
@@ -23,7 +23,7 @@ function Home() {
       userId:user.userId,
       channelId,
     }
-    let result = await  addCahnnelToFavoriter(favoriteChannel);
+    let result = await  addCahnnelToFavorites(favoriteChannel);
     if (result.success ) {
       console.log(result.success)
 
