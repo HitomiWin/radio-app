@@ -33,6 +33,7 @@ const getEpisodesByProgramId= async (req, res)=>{
   episodes = await episodes.json()
   res.json(episodes.episodes)
 }
+
 const addProgramToFavoriter = async (req, res )=>{
   let query =/*sql*/`SELECT * FROM usersXprograms WHERE  programId=$programId`;
   let params = {
@@ -42,10 +43,9 @@ const addProgramToFavoriter = async (req, res )=>{
     console.log("result :",result)
     if(result){
       res.json({
-        error:" The channel already exists"
+        error:" The program already exists"
       })
     } else {
-
        query =/*sql*/`INSERT INTO usersXprograms (userId, programId) VALUES ($userId, $programId)`
     
        params ={
@@ -65,11 +65,9 @@ const addProgramToFavoriter = async (req, res )=>{
           lastID: this.lastID
         })
       })
-    }
-    
+    }   
   })
 }
-
 
 module.exports ={
 getAllPrograms,

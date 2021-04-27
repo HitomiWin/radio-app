@@ -7,6 +7,6 @@ router.get("/:channelId",programController.getProgramsByChannelId);
 router.get("/allprogram/:programId",programController.getProgramById);
 router.get("/categories/:categoryId",programController.getProgramsByCategories);
 router.get("/episodes/:programId",programController.getEpisodesByProgramId);
-router.post("/:channelId",programController.addProgramToFavoriter);
+router.post("/:channelId",programController. addProgramToFavoriter);
 
 module.exports = router;

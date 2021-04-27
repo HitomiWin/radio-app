@@ -10,7 +10,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [isValid, setIsValid] = useState(false)
   const [inputDefault, setInputDefault] = useState(true)
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
   useEffect(() => {
     if (confirmPassword === "") {
       setInputDefault(true)
@@ -52,8 +52,7 @@ const Register = () => {
         setShowLogin(true);
 
       } else {
-        setError(true);
-        console.log(error);
+        setError(result.error);
       }
     }
     else{
@@ -69,7 +68,7 @@ const Register = () => {
           </Card.Header>
           <Card.Body>
             <Form onSubmit={(e) => { handleSubmit(e);}}>
-              <p className={`${styles.errorBox} ${error ? styles.active : styles.inactive}`}>{" "}This email already exist
+              <p className={`${styles.errorBox} ${error ? styles.active : styles.inactive}`}>{" "}{error}
               </p>
               <Form.Group>
                 <Form.Label>User Name</Form.Label>

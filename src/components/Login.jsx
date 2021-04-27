@@ -8,7 +8,7 @@ const Login = ()=>{
   const { login} =useContext(UserContext);//login is function to be logedin
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError]=useState(false);
+  const [error, setError]=useState(null);
   const history=useHistory();
   const handleEmailChange=(e)=>{
     setEmail(e.target.value);
@@ -25,10 +25,10 @@ const Login = ()=>{
     };
     let result = await login(userInfo);
     if(result.success){
+      console.log(result.success)
       history.push("/")
     }else{
-      setError(true)
-      console.log(error)
+      setError(result.error)
     }
   };
 
@@ -38,7 +38,7 @@ const Login = ()=>{
        <Card.Header as="h4" className="text-center">Logga In</Card.Header>
        <Card.Body>
         <Form onSubmit={(e)=>{handleSubmit(e)}}>
-                <p className={`${styles.errorBox} ${error ? styles.active : styles.inactive}`}> You did not enter the correct credentials</p>
+                <p className={`${styles.errorBox} ${error ? styles.active : styles.inactive}`}>{error}</p>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control onChange={ handleEmailChange } type="email" placeholder="Enter email" required />

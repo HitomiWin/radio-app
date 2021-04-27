@@ -11,8 +11,7 @@ const getAllFavoriteChannels =(req, res)=>{
  db.all(query,params,(err, channels)=>{
      console.log(channels);
      res.json(channels)
- })
-  
+ })  
 }
 const getAllFavoritePrograms =(req, res)=>{
  let query =/*sql*/`SELECT usersXprograms.programId FROM usersXprograms WHERE userId =$userId`

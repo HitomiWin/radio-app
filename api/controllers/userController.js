@@ -2,12 +2,10 @@ const sqlite3 = require("sqlite3");
 const Encrypt = require("../Encrypt")
 const path = require("path");
 const db = new sqlite3.Database(path.join(__dirname, "../../myRadioAppDB.db"));
-
 // Route handles goes underneath here...
 const whoami = (req, res) => {
   res.json(req.session.user || null);
 };
-
 const login = (req, res) => {
 
   let query = /*sql*/ `SELECT * FROM users WHERE email = $email`;
@@ -35,7 +33,6 @@ const login = (req, res) => {
         error: "Bad credentials"
       })
     }
-
   })
 };
 
@@ -78,11 +75,9 @@ const register = (req, res) => {
           success: "User register successfull",
           lastID: this.lastID,
         })
-
       });
     }
   });
-
 };
 
 module.exports = {
