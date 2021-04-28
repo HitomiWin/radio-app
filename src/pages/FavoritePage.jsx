@@ -1,21 +1,17 @@
-import { useContext, useEffect } from  "react" ;
+import { useState } from  "react" ;
 import {FavoriteContext} from "../contexts/FavoriteContext";
+import FavoriteChannels from "../components/FavoriteChannels"
+import FavoritePrograms from "../components/FavoritePrograms"
 import styles from "../css/ProgramsPage.module.css"
 
 const FavoritePage =()=>{
- 
-const { favoriteChannels,
-    getAllFavoriteChannels,
-    addCahnnelToFavorites,
-    favoritePrograms,
-    getAllFavoritePrograms,
-    addProgramToFavorites} =useContext( FavoriteContext );
+    const [ showChannels, setShowChannels]=useState(true)
 
     const handleOnclickChannels=()=>{
-      console.log("hej channel")
+      setShowChannels(true)
     }
     const handleOnclickPrograms=()=>{
-      console.log("hej program")
+      setShowChannels(false)
     }
     
 
@@ -31,6 +27,7 @@ const { favoriteChannels,
   return(
     <div >
       {renderMenuBar()}
+      {showChannels?< FavoriteChannels />:<FavoritePrograms />}
     </div>
   )
 }

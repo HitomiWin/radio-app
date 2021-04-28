@@ -25,7 +25,7 @@ const getChannelById = async (req, res) => {
     `http://api.sr.se/api/v2/channels/${req.params.channelId}?${json}`
   );
   channel = await channel.json();
-  res.json(channel);
+  res.json(channel.channel);
 };
 
 //http://localhost:3001/api/v1/channels/schedule/164?date=2021-04-21

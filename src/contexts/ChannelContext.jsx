@@ -23,7 +23,11 @@ const ChannelContextProvider = (props) => {
   const getChannelById = async (channelId)=>{
     let channel = await fetch(`/api/v1/channels/${channelId}`);
     channel = await channel.json();
-    setSingleChannel(channel.channel)
+    return channel
+  }
+  const getSingleChannel =(channelId)=>{
+    let channel = getChannelById(channelId)
+    setSingleChannel(channel)
   }
 
   const  getChannelSchedule= async (channelId,date)=>{
@@ -36,6 +40,7 @@ const ChannelContextProvider = (props) => {
     channels,
     singleChannel,
     getChannelById,
+    getSingleChannel,
     schedule,
     getChannelSchedule
   };

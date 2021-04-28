@@ -4,13 +4,13 @@ import styles from "../css/ProgramsPage.module.css"
 const ProgramsByChannelId = React.lazy(()=> import ("../components/ProgramsByCannelId"))
 const ChannelSchedule = React.lazy(()=> import ("../components/ChannelSchedule"))
 const ProgramsPage=(props)=> {
-  const { singleChannel, getChannelById }=useContext(ChannelContext);
+  const { singleChannel,getSingleChannel }=useContext(ChannelContext);
   const { channelId } = props.match.params;
   const [ showPrograms, setShowPrograms ]=useState(true);
 
 
   useEffect(() => {
-    getChannelById(channelId)
+    getSingleChannel(channelId)
          // eslint-disable-next-line
   }, [])
 

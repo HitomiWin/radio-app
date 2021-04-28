@@ -5,6 +5,8 @@ const FavoriteContextProvider=(props)=>{
  const [ favoriteChannels, setFavoriteChannels ]= useState(null);
  const [ favoritePrograms, setFavoritePrograms ] = useState(null);
 
+ useEffect(() => {
+ }, [])
  const getAllFavoriteChannels= async ()=>{
     let favoriteChannels = await fetch (`/api/v1/favorites/channels`)
     favoriteChannels = await favoriteChannels.json();
