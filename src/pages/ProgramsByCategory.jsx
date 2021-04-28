@@ -20,7 +20,7 @@ const ProgramsByCategory = (props) => {
     getCategoryById(categoryId)
     getProgramsByCategory(categoryId);
          // eslint-disable-next-line
-  }, [categoryId]);
+  }, [categoryId, programs]);
  
   const handleClick=(programId)=>{
     history.push(`/programs/allprogram/${programId}`)
@@ -59,9 +59,9 @@ const ProgramsByCategory = (props) => {
         <Col xs={7} >
         <Card.Body>
           <Card.Title>{program.name}</Card.Title>
-          <Card.Text>
+          {/* <Card.Text>
           <Tag color="gray" size={25} />           
-            {program.programcategory["name"]}</Card.Text>
+            {program.programcategory["name"]}</Card.Text> */}
         </Card.Body>
         </Col>
         {user &&

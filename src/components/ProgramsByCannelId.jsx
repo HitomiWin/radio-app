@@ -7,7 +7,7 @@ import { Card,  Container, Col, Row } from "react-bootstrap";
 import { Tag, Heart } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
 const ProgramsByChannelId=(props)=> {
-  const { programsByChannelId , getProgramsByChannelId } = useContext( ProgramContext );
+  const { programs, getProgramsByChannelId } = useContext( ProgramContext );
   const { addProgramToFavorites } = useContext( FavoriteContext );
   const { user } = useContext ( UserContext );
   const history =useHistory();
@@ -17,7 +17,7 @@ const ProgramsByChannelId=(props)=> {
   useEffect(()=>{
     getProgramsByChannelId(props.channelId);
          // eslint-disable-next-line
-  },[props.channelId]);
+  },[props.channelId, programs]);
   
   const handleOnClickHeart= async (e, programId, channelId)=>{
 
@@ -36,7 +36,7 @@ const ProgramsByChannelId=(props)=> {
 
   const renderPrograms=()=>{
    return (
-    programsByChannelId.map((program)=>(
+    programs.map((program)=>(
       <Col key={program.id} xs={12} md={12} lg={6}   onClick={() => handleClick(program.id) }>
       <Card className={styles.card} >
       <Row>
@@ -67,7 +67,7 @@ const ProgramsByChannelId=(props)=> {
       <hr />
       <Container >
       <Row >      
-      {programsByChannelId && renderPrograms()}
+      {programs && renderPrograms()}
       </Row> 
       </Container>
     </div>
