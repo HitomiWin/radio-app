@@ -1,12 +1,14 @@
 import { useContext, useEffect } from "react";
 import { ProgramContext } from "../contexts/ProgramContext";
 import { UserContext } from "../contexts/UserContext";
+import { FavoriteContext } from "../contexts/FavoriteContext";
 import {useHistory} from "react-router-dom"
 import { Card,  Container, Col, Row } from "react-bootstrap";
 import { Tag, Heart } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
 const ProgramsByChannelId=(props)=> {
   const { programsByChannelId , getProgramsByChannelId } = useContext( ProgramContext );
+  const { addProgramToFavorites } = useContext( FavoriteContext );
   const { user } = useContext ( UserContext );
   const history =useHistory();
   const handleClick=(programId)=>{
@@ -15,7 +17,22 @@ const ProgramsByChannelId=(props)=> {
   useEffect(()=>{
     getProgramsByChannelId(props.channelId);
          // eslint-disable-next-line
-  },[props.channelId])  
+  },[props.channelId]);
+  
+  const handleOnClickHeart= async (e, programId, channelId)=>{
+
+    e.stopPropagation()
+    let favoriteProgram ={
+      programId,
+    }
+    let result = await  addProgramToFavorites(favoriteProgram, channelId);
+    if (result.success ) {
+      console.log(result.success)
+    } else {
+      console.log(result.error)
+    }
+  };
+
 
   const renderPrograms=()=>{
    return (
@@ -36,7 +53,7 @@ const ProgramsByChannelId=(props)=> {
        </Col>
        {user &&
        <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
-           <Heart color="gray" size={25}/ > 
+           <Heart color="gray" size={25}  onClick={(e)=>{handleOnClickHeart(e,program.id, props.channelId)}}/ > 
         </Col> }    
        </Row>
      </Card>

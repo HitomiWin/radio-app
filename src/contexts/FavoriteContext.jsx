@@ -29,13 +29,15 @@ const FavoriteContextProvider=(props)=>{
     getAllFavoriteChannels();
     return result
   }
-  const addProgramToFavorites = async (programId)=>{
-    let result = await fetch (`/api/v1/programs`, {
-      mehod:"POST",
+
+  const addProgramToFavorites = async (programId, channelId)=>{
+
+    let result = await fetch (`/api/v1/programs/${channelId}`, {
+      method:"POST",
       headers:{
         "content-type": "application/json",
       },
-      body:JSON.stringfy(programId)
+      body:JSON.stringify(programId)
     })
     result = await result.json();
     getAllFavoritePrograms();

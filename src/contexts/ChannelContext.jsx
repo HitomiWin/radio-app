@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect } from "react";
-
 export const ChannelContext = createContext();
 
 const ChannelContextProvider = (props) => {
@@ -33,7 +32,6 @@ const ChannelContextProvider = (props) => {
     setSchedule(schedule);
   }
 
- 
   const values = {
     channels,
     singleChannel,

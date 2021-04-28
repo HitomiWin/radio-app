@@ -26,11 +26,9 @@ function Home() {
     let result = await  addCahnnelToFavorites(favoriteChannel);
     if (result.success ) {
       console.log(result.success)
-
     } else {
       console.log(result.error)
     }
-
   };
 
   const renderChannels = () => {
@@ -46,9 +44,10 @@ function Home() {
             <Card.Text>{channel.tagline}</Card.Text>
           </Card.Body>
           </Col>
+          { user && 
           <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
-          { user ? <Heart color="gray" size={25} onClick={(e)=>{handleOnClickHeart(e,channel.id)}} / > : ""}
-          </Col>
+          <Heart color="gray" size={25} onClick={(e)=>{handleOnClickHeart(e,channel.id)}} / >
+          </Col>}
           </Row>
         </Card>
     ))
