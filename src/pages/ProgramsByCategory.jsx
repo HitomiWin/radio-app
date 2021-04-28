@@ -75,7 +75,7 @@ const ProgramsByCategory = (props) => {
     )
   } 
    return (
-     <div className={styles.programs}>
+     <div className={styles.programsPage}>
        { renderMenuBar() }
        <hr />
        <Container >
