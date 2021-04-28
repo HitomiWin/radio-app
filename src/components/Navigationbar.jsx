@@ -33,7 +33,7 @@ const Navigationbar=()=> {
         <NavDropdown className="pr-md-5" title="Kategorier" id="collasible-nav-dropdown">
          { categories && renderNavDropDownItem() }
         </NavDropdown>
-        { user? <NavLink className ={ styles.link } to="/" >Mina Favoriter</NavLink> :""}
+        { user? <NavLink className ={ styles.link } to="/favorite" >Mina Favoriter</NavLink> :""}
         { user? <NavLink to ="/" onClick={()=>{ handleOnclickLogout() }} className ={styles.link }>Logga ut</NavLink>:<NavLink className ={ styles.link } to="/users/login" >Logga in</NavLink> }
       </Nav>
     </Navbar.Collapse>

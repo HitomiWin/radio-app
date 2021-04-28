@@ -51,7 +51,6 @@ const FavoriteContextProvider=(props)=>{
    favoritePrograms,
    getAllFavoritePrograms,
    addProgramToFavorites
-
   }
 
   return (

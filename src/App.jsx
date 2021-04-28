@@ -9,7 +9,8 @@ import ProgramPage from "./pages/ProgramPage";
 import ProgramsPage from "./pages/ProgramsPage";
 import ProgramsByCategory from "./pages/ProgramsByCategory";
 import UserContextProvider from "./contexts/UserContext";
-import LoginPage from "./pages/LoginPage"
+import LoginPage from "./pages/LoginPage";
+import FavoritePage from "./pages/FavoritePage"
 function App() {
   return (
     <div className="App">
@@ -26,6 +27,7 @@ function App() {
                     exact path="/programs/allprogram/:programId" component={ProgramPage} />
                   <Route exact path="/programs/categories/:categoryId" component={ProgramsByCategory} />
                   <Route exact path="/users/login" component={LoginPage} />
+                  <Route exact path="/favorite" component={FavoritePage} />
                 </FavoriteContextProvider>
               </ChannelContextProvider>
             </ProgramContextProvider>
