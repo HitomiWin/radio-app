@@ -1,16 +1,20 @@
-import { createContext, useState} from "react";
+import { createContext, useState ,useEffect ,useContext} from "react";
+import ChannelContextProvider, {ChannelContext } from "./ChannelContext"
 export const FavoriteContext = createContext();
 
 const FavoriteContextProvider=(props)=>{
- const [ favoriteChannels, setFavoriteChannels ]= useState(null);
+  const { channels } =useContext( ChannelContext )
+ const [ channelIds, setChannelIds ]= useState(null);
  const [ favoritePrograms, setFavoritePrograms ] = useState(null);
 
  useEffect(() => {
+  getAllFavoriteChannelIds()
  }, [])
- const getAllFavoriteChannels= async ()=>{
-    let favoriteChannels = await fetch (`/api/v1/favorites/channels`)
-    favoriteChannels = await favoriteChannels.json();
-    setFavoriteChannels(favoriteChannels)
+
+ const getAllFavoriteChannelIds= async ()=>{
+    let favoriteChannelIds = await fetch (`/api/v1/favorites/channels`)
+    favoriteChannelIds = await favoriteChannelIds.json();
+    setChannelIds(favoriteChannelIds)
   }
 
   const getAllFavoritePrograms = async ()=>{
@@ -28,7 +32,7 @@ const FavoriteContextProvider=(props)=>{
       body: JSON.stringify(channelId),
     });
     result= await result.json();
-    getAllFavoriteChannels();
+    getAllFavoriteChannelIds();
     return result
   }
 
@@ -47,8 +51,8 @@ const FavoriteContextProvider=(props)=>{
   }
  
   const values ={
-   favoriteChannels,
-   getAllFavoriteChannels,
+   channelIds,
+   getAllFavoriteChannelIds,
    addCahnnelToFavorites,
    favoritePrograms,
    getAllFavoritePrograms,
