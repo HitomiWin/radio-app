@@ -1,15 +1,18 @@
 import { createContext, useState ,useEffect ,useContext} from "react";
-import ChannelContextProvider, {ChannelContext } from "./ChannelContext"
+import {ChannelContext } from "./ChannelContext"
+import { UserContext } from "./UserContext"
 export const FavoriteContext = createContext();
 
 const FavoriteContextProvider=(props)=>{
-  const { channels } =useContext( ChannelContext )
+  const { channels } =useContext( ChannelContext );
+  const { user }=useContext( UserContext )
  const [ channelIds, setChannelIds ]= useState(null);
  const [ favoritePrograms, setFavoritePrograms ] = useState(null);
+ 
 
  useEffect(() => {
   getAllFavoriteChannelIds()
- }, [])
+ }, [user])
 
  const getAllFavoriteChannelIds= async ()=>{
     let favoriteChannelIds = await fetch (`/api/v1/favorites/channels`)

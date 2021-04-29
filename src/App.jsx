@@ -15,10 +15,10 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <UserContextProvider>
-          <CategoryContextProvider>
-            <ProgramContextProvider>
-              <ChannelContextProvider>
+      <UserContextProvider>
+        <ChannelContextProvider>
+            <CategoryContextProvider>
+              <ProgramContextProvider>
                 <FavoriteContextProvider>
                   <Navbar />
                   <Route exact path="/" component={Home} />
@@ -29,9 +29,9 @@ function App() {
                   <Route exact path="/users/login" component={LoginPage} />
                   <Route exact path="/favorite" component={FavoritePage} />
                 </FavoriteContextProvider>
-              </ChannelContextProvider>
-            </ProgramContextProvider>
-          </CategoryContextProvider>
+              </ProgramContextProvider>
+            </CategoryContextProvider>
+          </ChannelContextProvider>
         </UserContextProvider>
       </BrowserRouter>
     </div>

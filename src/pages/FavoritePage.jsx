@@ -1,8 +1,9 @@
-import { useState } from  "react" ;
+import React, { Suspense ,useState } from "react"
 import {FavoriteContext} from "../contexts/FavoriteContext";
-import FavoriteChannels from "../components/FavoriteChannels"
+// import FavoriteChannels from "../components/FavoriteChannels"
 import FavoritePrograms from "../components/FavoritePrograms"
 import styles from "../css/ProgramsPage.module.css"
+const  FavoriteChannels = React.lazy(()=>import("../components/FavoriteChannels"));
 
 const FavoritePage =()=>{
     const [ showChannels, setShowChannels]=useState(true)
@@ -26,8 +27,10 @@ const FavoritePage =()=>{
 
   return(
     <div >
+      <Suspense fallback="loading...">
       {renderMenuBar()}
       {showChannels?< FavoriteChannels />:<FavoritePrograms />}
+      </Suspense>
     </div>
   )
 }
