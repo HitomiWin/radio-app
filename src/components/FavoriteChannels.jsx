@@ -13,11 +13,11 @@ function FavoriteChannels(props) {
     console.log(channels)
   }, [channelIds])
   const getChannelsByFavoriteChannelIds=()=>{
-    let result = channels.filter((c)=>{
-      return channelIds.find((ci)=>(
+    let result = channels.filter((c)=>(
+      channelIds.find((ci)=>(
         c.id===ci.channelId
       ))
-    })
+    ))
     setFavoriteChannels(result)
   }
   console.log(favoriteChannels)
