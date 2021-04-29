@@ -1,29 +1,30 @@
 import { createContext, useState ,useEffect ,useContext} from "react";
-import {ChannelContext } from "./ChannelContext"
 import { UserContext } from "./UserContext"
 export const FavoriteContext = createContext();
 
 const FavoriteContextProvider=(props)=>{
-  const { channels } =useContext( ChannelContext );
-  const { user }=useContext( UserContext )
+ const { user }=useContext( UserContext )
  const [ channelIds, setChannelIds ]= useState(null);
- const [ favoritePrograms, setFavoritePrograms ] = useState(null);
+ const [ favoriteProgramIds, setFavoriteProgramIds ] = useState(null);
  
 
  useEffect(() => {
+   if(user){
   getAllFavoriteChannelIds()
+  getAllFavoriteProgramIds()
+   }
  }, [user])
 
  const getAllFavoriteChannelIds= async ()=>{
     let favoriteChannelIds = await fetch (`/api/v1/favorites/channels`)
     favoriteChannelIds = await favoriteChannelIds.json();
-    setChannelIds(favoriteChannelIds)
+      setChannelIds(favoriteChannelIds)   
   }
 
-  const getAllFavoritePrograms = async ()=>{
+  const getAllFavoriteProgramIds = async ()=>{
     let favoritePrograms = await fetch (`/api/v1/favorites/programs`);
     favoritePrograms = await favoritePrograms.json();
-    setFavoritePrograms(favoritePrograms)
+    setFavoriteProgramIds(favoritePrograms)
   }
 
  const addCahnnelToFavorites = async (channelId)=>{
@@ -49,16 +50,14 @@ const FavoriteContextProvider=(props)=>{
       body:JSON.stringify(programId)
     })
     result = await result.json();
-    getAllFavoritePrograms();
+    getAllFavoriteProgramIds();
     return result
   }
  
   const values ={
    channelIds,
-   getAllFavoriteChannelIds,
+   favoriteProgramIds,
    addCahnnelToFavorites,
-   favoritePrograms,
-   getAllFavoritePrograms,
    addProgramToFavorites
   }
 

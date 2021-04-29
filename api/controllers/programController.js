@@ -8,7 +8,7 @@ const db = new sqlite3.Database(path.join(__dirname, "../../myRadioAppDB.db"));
 const getAllPrograms= async (req, res)=>{
   let programs = await fetch(`http://api.sr.se/api/v2/programs?${json}&${paginationFalse}`)
   programs = await programs.json();
-  res.json(programs)
+  res.json(programs.programs)
 };
 
 const getProgramsByChannelId = async(req, res)=>{
@@ -35,8 +35,9 @@ const getEpisodesByProgramId= async (req, res)=>{
 }
 
 const addProgramToFavoriter = async (req, res )=>{
-  let query =/*sql*/`SELECT * FROM usersXprograms WHERE  programId=$programId`;
+  let query =/*sql*/`SELECT * FROM usersXprograms WHERE  programId=$programId AND userId = $userId`;
   let params = {
+    $userId:req.session.user.userId,
     $programId : req.body.programId
   }
   db.get(query, params, (err, result ) =>{

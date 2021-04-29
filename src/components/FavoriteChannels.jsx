@@ -14,9 +14,8 @@ import styles from "../css/Channels.module.css";
 
   useEffect(() => {
     getChannelsByFavoriteChannelIds();
-    console.log(channelIds)
-    console.log(channels)
-  }, [channelIds])
+  }, [channelIds]);
+  
   const getChannelsByFavoriteChannelIds=()=>{
     let result = channels.filter((c)=>(
       channelIds.find((ci)=>(

@@ -9,8 +9,11 @@ const getAllFavoriteChannels =(req, res)=>{
    $userId:req.session.user.userId
  }
  db.all(query,params,(err, channels)=>{
-     console.log(channels);
-     res.json(channels)
+  if(channels){
+    res.json(channels)
+  }else(
+   res.json({error:"Channels not founds"})
+  )
  })  
 }
 const getAllFavoritePrograms =(req, res)=>{
@@ -22,7 +25,7 @@ const getAllFavoritePrograms =(req, res)=>{
    if(programs){
      res.json(programs)
    }else(
-     console.log("Program Not Found")
+    res.json({error:"Programs not founds"})
    )
  }) 
 }

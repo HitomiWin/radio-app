@@ -47,8 +47,9 @@ const getChannelSchedule = async (req, res) => {
 };
 
 const addChannelToFavoriter = async (req, res )=>{
-  let query =/*sql*/`SELECT * FROM usersXchannels WHERE  channelId=$channelId`;
+  let query =/*sql*/`SELECT * FROM usersXchannels WHERE  channelId=$channelId AND userId=$userId`;
   let params = {
+    $userId: req.session.user.userId,
     $channelId : req.body.channelId
   }
   db.get(query, params, (err, result ) =>{
