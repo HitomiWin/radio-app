@@ -1,6 +1,7 @@
 import { useContext, useEffect ,useState } from "react";
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import { ChannelContext } from "../contexts/ChannelContext";
+import ChannelSchedule from "./ChannelSchedule"
 import { useHistory } from "react-router-dom";
 import { Card, Container, Col, Row } from "react-bootstrap";
 import {  HeartFill } from 'react-bootstrap-icons';
@@ -10,7 +11,8 @@ import styles from "../css/Channels.module.css";
   const { channelIds } = useContext( FavoriteContext );
   const { channels } = useContext( ChannelContext );
   const [favoriteChannels, setFavoriteChannels ] = useState(null);
-  const [showSchedule, setSchedule ] = useState(null);
+  const [showSchedule, setShowSchedule ] = useState(null);
+  const [channelIdToSchedule, setChannelIdToSchedule ] = useState(null)
   const history = useHistory();
   
   useEffect(() => {
@@ -30,7 +32,8 @@ import styles from "../css/Channels.module.css";
   }
 
   const handleClick = (channelId) => {
-    history.push(`/programs/${channelId}`);
+    setChannelIdToSchedule(channelId);
+    setShowSchedule(true)
   };
 
   const renderFavoriteChannels=()=>{
@@ -59,14 +62,17 @@ import styles from "../css/Channels.module.css";
     <div>
     <h1>
       this is FavoriteChannels
-    </h1>     
-    <Container className="d-flex justify-content-center flex-wrap"  >
-    {favoriteChannels.length==0 ?    
-      <p>You have no favorite channels</p>
+    </h1>
+    {showSchedule? 
+    < ChannelSchedule channelId = {channelIdToSchedule} />
+
+    :<Container className="d-flex justify-content-center flex-wrap"  >
+    {!favoriteChannels || favoriteChannels.length==0 ?    
+      <p>Favorite Channels Not Found </p>
       :<Row lg={2}>      
       {renderFavoriteChannels()}     
       </Row> }
-      </Container>
+      </Container> }
     </div> 
 
   );
