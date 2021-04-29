@@ -72,16 +72,16 @@ const ChannelSchedule = (props) => {
         <li className={listItem}>
           <span className={` ${tomorrow ? active : inactive}`} onClick={()=>{handleOnclickTomorrow()}}>Imorgon</span>
         </li>
-        {/* <Dropdown> */}
-            {/* <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
+        <Dropdown> 
+           <Dropdown.Toggle variant="outline-secondary" id="dropdown-basic">
             <Calendar3 />  Välj Datum
             </Dropdown.Toggle>
             <Dropdown.Menu>
-            <Dropdown.Item > */}
+            {/* <Dropdown.Item >  */}
             <Calendar locale="sv-SE" calendarType="US" onClickDay={(value,e)=>handlePickDateOnClick(value,e)} onChange={onChange} onClick={onClick} value={value} />
-            {/* </Dropdown.Item>  
+            {/* </Dropdown.Item>   */}
               </Dropdown.Menu>
-            </Dropdown> */}
+            </Dropdown> 
       </ul>
     );
   };
