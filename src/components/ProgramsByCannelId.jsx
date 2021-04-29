@@ -52,8 +52,8 @@ const ProgramsByChannelId=(props)=> {
        </Card.Body>
        </Col>
        {user &&
-       <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
-           <Heart color="gray" size={25}  onClick={(e)=>{handleOnClickHeart(e,program.id, props.channelId)}}/ > 
+       <Col  xs={1}  style={{paddingTop:"1.25rem"}} className={styles.heart} >
+           <Heart className={styles.heartIcon} size={25}  onClick={(e)=>{handleOnClickHeart(e,program.id, props.channelId)}}/ > 
         </Col> }    
        </Row>
      </Card>

@@ -3,19 +3,23 @@ import { FavoriteContext } from "../contexts/FavoriteContext";
 import { ChannelContext } from "../contexts/ChannelContext";
 import { useHistory } from "react-router-dom";
 import { Card, Container, Col, Row } from "react-bootstrap";
-import { Heart, HeartFill } from 'react-bootstrap-icons';
+import {  HeartFill } from 'react-bootstrap-icons';
 import styles from "../css/Channels.module.css";
 
  const FavoriteChannels=()=> {
   const { channelIds } = useContext( FavoriteContext );
   const { channels } = useContext( ChannelContext );
   const [favoriteChannels, setFavoriteChannels ] = useState(null);
+  const [showSchedule, setSchedule ] = useState(null);
   const history = useHistory();
-
+  
   useEffect(() => {
-    getChannelsByFavoriteChannelIds();
+    if(channels){
+      getChannelsByFavoriteChannelIds();
+    }
   }, [channelIds]);
   
+  console.log(favoriteChannels)
   const getChannelsByFavoriteChannelIds=()=>{
     let result = channels.filter((c)=>(
       channelIds.find((ci)=>(
@@ -31,7 +35,7 @@ import styles from "../css/Channels.module.css";
 
   const renderFavoriteChannels=()=>{
     return favoriteChannels.map((channel) => (
-      <Card key={channel.id} className={styles.card} onClick={() => handleClick(channel.id) }>
+      <Card key={channel.id} className={styles.card} >
        <Row className={styles.row}>
         <Col xs={3}  style={{padding:"1.25rem"}}>
           <Card.Img src={channel.image} alt={"image"} />
@@ -40,6 +44,7 @@ import styles from "../css/Channels.module.css";
         <Card.Body>
           <Card.Title>{channel.name} </Card.Title>
           <Card.Text>{channel.tagline}</Card.Text>
+          <button className={styles.scheduleButton} onClick={() => handleClick(channel.id) }> Tablå  &gt;  &gt;  &gt;</button>
         </Card.Body>
         </Col>
         <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
@@ -56,9 +61,11 @@ import styles from "../css/Channels.module.css";
       this is FavoriteChannels
     </h1>     
     <Container className="d-flex justify-content-center flex-wrap"  >
-      <Row lg={2}>      
-      {favoriteChannels ? renderFavoriteChannels() :<p>No result</p>}    
-      </Row> 
+    {favoriteChannels.length==0 ?    
+      <p>You have no favorite channels</p>
+      :<Row lg={2}>      
+      {renderFavoriteChannels()}     
+      </Row> }
       </Container>
     </div> 
 

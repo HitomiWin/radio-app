@@ -11,7 +11,7 @@ import styles from "../css/ProgramsByCategory.module.css"
 
 const ProgramsByCategory = (props) => {
   const { category, getCategoryById } = useContext( CategoryContext )
-  const {programs , getProgramsByCategory } = useContext( ProgramContext )
+  const {programsByCategory , getProgramsByCategory } = useContext( ProgramContext )
   const {categoryId} = props.match.params;
   const { user } = useContext ( UserContext );
   const { addProgramToFavorites } = useContext( FavoriteContext );
@@ -20,7 +20,7 @@ const ProgramsByCategory = (props) => {
     getCategoryById(categoryId)
     getProgramsByCategory(categoryId);
          // eslint-disable-next-line
-  }, [categoryId, programs]);
+  }, [categoryId, programsByCategory]);
  
   const handleClick=(programId)=>{
     history.push(`/programs/allprogram/${programId}`)
@@ -49,7 +49,7 @@ const ProgramsByCategory = (props) => {
 
   const renderPrograms=()=>{
     return (
-      programs.map((program)=>(
+      programsByCategory.map((program)=>(
        <Col key={program.id} xs={12} md={12} lg={6}   onClick={() => handleClick(program.id) }>
        <Card className={styles.card} >
        <Row>
@@ -59,14 +59,14 @@ const ProgramsByCategory = (props) => {
         <Col xs={7} >
         <Card.Body>
           <Card.Title>{program.name}</Card.Title>
-          {/* <Card.Text>
+          <Card.Text>
           <Tag color="gray" size={25} />           
-            {program.programcategory["name"]}</Card.Text> */}
+            {program.programcategory["name"]}</Card.Text>
         </Card.Body>
         </Col>
         {user &&
-       <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
-           <Heart color="gray" size={25}  onClick={(e)=>{handleOnClickHeart(e,program.id, props.channelId)}}/ > 
+       <Col  xs={1}  style={{paddingTop:"1.25rem"}} className={styles.heart}>
+           <Heart className={styles.heartIcon}  size={25}  onClick={(e)=>{handleOnClickHeart(e,program.id, props.channelId)}}/ > 
         </Col> }    
         </Row>
       </Card>
@@ -80,7 +80,7 @@ const ProgramsByCategory = (props) => {
        <hr />
        <Container >
        <Row >      
-       {programs && renderPrograms()}
+       {programsByCategory && renderPrograms()}
        </Row> 
        </Container>
      </div>
