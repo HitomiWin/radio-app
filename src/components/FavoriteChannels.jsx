@@ -2,24 +2,23 @@ import { useContext, useEffect ,useState } from "react";
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import { ChannelContext } from "../contexts/ChannelContext";
 import ChannelSchedule from "./ChannelSchedule"
-import { useHistory } from "react-router-dom";
 import { Card, Container, Col, Row } from "react-bootstrap";
 import {  HeartFill } from 'react-bootstrap-icons';
 import styles from "../css/Channels.module.css";
 
  const FavoriteChannels=()=> {
-  const { favoriteChannelIds } = useContext( FavoriteContext );
+  const { favoriteChannelIds, deleteFavoriteChannel } = useContext( FavoriteContext );
   const { channels } = useContext( ChannelContext );
   const [favoriteChannels, setFavoriteChannels ] = useState(null);
   const [showSchedule, setShowSchedule ] = useState(null);
   const [channelIdToSchedule, setChannelIdToSchedule ] = useState(null)
-  const history = useHistory();
+
   
   useEffect(() => {
     if(channels){
       getChannelsByFavoriteChannelIds();
     }
-  }, [channelIds]);
+  }, [favoriteChannelIds]);
   
   console.log(favoriteChannels)
   const getChannelsByFavoriteChannelIds=()=>{
@@ -36,6 +35,8 @@ import styles from "../css/Channels.module.css";
     setShowSchedule(true)
   };
 
+
+
   const renderFavoriteChannels=()=>{
     return favoriteChannels.map((channel) => (
       <Card key={channel.id} className={styles.card} >
@@ -47,11 +48,11 @@ import styles from "../css/Channels.module.css";
         <Card.Body>
           <Card.Title>{channel.name} </Card.Title>
           <Card.Text>{channel.tagline}</Card.Text>
-          <button className={styles.scheduleButton} onClick={() => handleClick(channel.id) }> Tablå  &gt;  &gt;  &gt;</button>
+          <p className={styles.goToSchedule} onClick={() => handleClick(channel.id) }> Tablå  &gt;  &gt;  &gt;</p>
         </Card.Body>
         </Col>
         <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
-        <HeartFill color="red" size={25}  / >
+        <HeartFill  onClick={()=>{deleteFavoriteChannel(channel.id)}} color="red" size={25}  / >
         </Col>
         </Row>
       </Card>
