@@ -34,7 +34,7 @@ const getEpisodesByProgramId= async (req, res)=>{
   res.json(episodes.episodes)
 }
 
-const addProgramToFavoriter = async (req, res )=>{
+const addProgramToFavorites = async (req, res )=>{
   let query =/*sql*/`SELECT * FROM usersXprograms WHERE  programId=$programId AND userId = $userId`;
   let params = {
     $userId:req.session.user.userId,
@@ -70,12 +70,14 @@ const addProgramToFavoriter = async (req, res )=>{
   })
 }
 
+
+
 module.exports ={
 getAllPrograms,
 getProgramsByChannelId,
 getProgramById,
 getProgramsByCategories,
 getEpisodesByProgramId,
-addProgramToFavoriter
+addProgramToFavorites
 
 }

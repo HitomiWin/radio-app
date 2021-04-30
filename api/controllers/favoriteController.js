@@ -30,7 +30,37 @@ const getAllFavoritePrograms =(req, res)=>{
  }) 
 }
 
+const deleteFavoriteChannel =(req, res)=>{
+  let query = /*sql*/ `DELETE FROM usersXchannels WHERE userId =$userId AND channelId = $channelId`
+  let params ={
+    $userId : req.session.user.userId,
+    $channelId : req.body.channelId
+  }
+  db.run(query, params, function(err) {
+    res.json({
+      success:" The Channel has been deleted ",
+      changes: this.changes
+    })
+  })
+}
+
+const deleteFavoriteProgram =(req, res)=>{
+  let query = /*sql*/ `DELETE FROM usersXprograms WHERE userId =$userId AND programId = $programId`
+  let params ={
+    $userId : req.session.user.userId,
+    $programId : req.body.programId
+  }
+  db.run(query, params, function(err) {
+    res.json({
+      success:" The Program has been deleted ",
+      changes: this.changes
+    })
+  })
+}
+
 module.exports={
   getAllFavoriteChannels,
-  getAllFavoritePrograms
+  getAllFavoritePrograms,
+  deleteFavoriteChannel,
+  deleteFavoriteProgram
 }

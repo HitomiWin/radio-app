@@ -46,7 +46,7 @@ const getChannelSchedule = async (req, res) => {
   res.json(channelSchedule.schedule);
 };
 
-const addChannelToFavoriter = async (req, res )=>{
+const addChannelToFavorites = async (req, res )=>{
   let query =/*sql*/`SELECT * FROM usersXchannels WHERE  channelId=$channelId AND userId=$userId`;
   let params = {
     $userId: req.session.user.userId,
@@ -90,5 +90,5 @@ module.exports = {
   getAllChannels,
   getChannelById,
   getChannelSchedule,
-  addChannelToFavoriter
+  addChannelToFavorites
 };
