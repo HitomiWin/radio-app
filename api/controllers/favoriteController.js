@@ -34,7 +34,7 @@ const deleteFavoriteChannel =(req, res)=>{
   let query = /*sql*/ `DELETE FROM usersXchannels WHERE userId =$userId AND channelId = $channelId`
   let params ={
     $userId : req.session.user.userId,
-    $channelId : req.body.channelId
+    $channelId : req.params.channelId
   }
   db.run(query, params, function(err) {
     res.json({
@@ -48,7 +48,7 @@ const deleteFavoriteProgram =(req, res)=>{
   let query = /*sql*/ `DELETE FROM usersXprograms WHERE userId =$userId AND programId = $programId`
   let params ={
     $userId : req.session.user.userId,
-    $programId : req.body.programId
+    $programId : req.params.programId
   }
   db.run(query, params, function(err) {
     res.json({

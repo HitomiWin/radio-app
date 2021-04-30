@@ -8,7 +8,7 @@ import { Tag, HeartFill } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
 
  const FavoritePrograms=()=> {
-  const { favoriteProgramIds } = useContext( FavoriteContext );
+  const { favoriteProgramIds, deleteFavoriteProgram } = useContext( FavoriteContext );
   const { allPrograms } = useContext( ProgramContext );
   const [favoritePrograms, setFavoritePrograms ] = useState(null);
   const history = useHistory();
@@ -30,6 +30,11 @@ import styles from "../css/ProgramsPage.module.css"
     history.push(`/programs/allprogram/${programId}`)
   }
 
+  const handleOnclickHeart=(e, programId)=>{
+    e.stopPropagation();
+    deleteFavoriteProgram(programId)
+  }
+
   const renderFavoritePrograms=()=>{
     return (
      favoritePrograms.map((program)=>(
@@ -48,7 +53,7 @@ import styles from "../css/ProgramsPage.module.css"
         </Card.Body>
         </Col>
         <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
-            <HeartFill color="red" size={25} / > 
+            <HeartFill onClick={(e)=>{handleOnclickHeart(e, program.id)}} color="red" size={25} / > 
          </Col>     
         </Row>
       </Card>

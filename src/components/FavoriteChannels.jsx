@@ -20,7 +20,6 @@ import styles from "../css/Channels.module.css";
     }
   }, [favoriteChannelIds]);
   
-  console.log(favoriteChannels)
   const getChannelsByFavoriteChannelIds=()=>{
     let result = channels.filter((c)=>(
       favoriteChannelIds.find((ci)=>(
@@ -34,8 +33,6 @@ import styles from "../css/Channels.module.css";
     setChannelIdToSchedule(channelId);
     setShowSchedule(true)
   };
-
-
 
   const renderFavoriteChannels=()=>{
     return favoriteChannels.map((channel) => (

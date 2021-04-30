@@ -5,8 +5,8 @@ const favoriteController = require("../controllers/favoriteController");
 
 router.get("/channels", favoriteController.getAllFavoriteChannels);
 router.get("/programs", favoriteController.getAllFavoritePrograms);
-router.delete("/channels",favoriteController.deleteFavoriteChannel);
-router.delete("/programs",favoriteController.deleteFavoriteProgram);
+router.delete("/channels/:channelId",favoriteController.deleteFavoriteChannel);
+router.delete("/programs/:programId",favoriteController.deleteFavoriteProgram);
 
 module.exports = router;
 
