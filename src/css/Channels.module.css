@@ -8,12 +8,14 @@
 
 }
 
-.heart .heartIcon{
-  color:rgb(189, 189, 189);
+.heart .heartIcon .gray{
+  color:rgba(128, 128, 128, 0.5);
 }
-
-.heart .heartIcon:hover{
+.heart .heartIcon .red{
   color:red;
+}
+.heart .heartIcon:hover{
+  color:red; 
 }
 .goToSchedule{
  color:cadetblue

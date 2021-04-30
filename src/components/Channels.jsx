@@ -17,10 +17,10 @@ function Channels() {
   if(user){
     getFavoriteHeart();
   }
-  },[channels,favoriteChannelIds])
+  },[channels, favoriteChannelIds])
 
   const getFavoriteHeart=()=>{
-    if(favoriteChannelIds){
+    if(favoriteChannelIds && channels){
     channels.map((channel)=>{    
         let result = favoriteChannelIds.find((ci)=>(
           channel.id===ci.channelId
@@ -39,9 +39,9 @@ function Channels() {
   const handleClick = (channelId) => {
     history.push(`/programs/${channelId}`);
   };
-
-  const handleOnClickHeart= async (e, channelId)=>{
-    e.stopPropagation()
+  
+  const handleOnClickGrayHeart= async (channelId)=>{
+    // e.stopPropagation();
     let favoriteChannel ={
       userId:user.userId,
       channelId,
@@ -53,7 +53,19 @@ function Channels() {
       console.log(result.error)
     }
   };
-  
+  const toggleColor=(e, channelId, favorite)=>{ 
+    e.stopPropagation();
+    if(favorite){
+      deleteFavoriteChannel(channelId)
+      console.log("clickedRed")
+    }else{
+      handleOnClickGrayHeart(channelId)
+
+      console.log("clickedgray")
+    }
+  }
+ 
+
   const renderChannels = () => {
     return channels.map((channel) => (
         <Card key={channel.id} className={styles.card} onClick={() => handleClick(channel.id) }>
@@ -68,10 +80,10 @@ function Channels() {
           </Card.Body>
           </Col>
           { user && 
-          <Col  xs={1}  style={{paddingTop:"1.25rem"}} className={styles.heart}>
-            {channel.favorite?  <HeartFill color="red" size={25} onClick={(e)=>{deleteFavoriteChannel(e, channel.id)}}   / >
-          :<Heart className={styles.heartIcon} size={25} onClick={(e)=>{handleOnClickHeart( e, channel.id)}} / >}
-          </Col>}
+          <Col xs={1}  style={{paddingTop:"1.25rem"}} className={styles.heart}>       
+             <HeartFill color={`${channel.favorite? "red" :"gray"}`} size={25} onClick={(e)=>toggleColor(e, channel.id, channel.favorite)}/> 
+          </Col>
+        }
           </Row>
         </Card>
     ))
