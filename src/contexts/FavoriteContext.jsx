@@ -4,7 +4,7 @@ export const FavoriteContext = createContext();
 
 const FavoriteContextProvider=(props)=>{
  const { user }=useContext( UserContext )
- const [ channelIds, setChannelIds ]= useState(null);
+ const [ favoroteChannelIds, setFavoriteChannelIds ]= useState(null);
  const [ favoriteProgramIds, setFavoriteProgramIds ] = useState(null);
  
 
@@ -13,12 +13,12 @@ const FavoriteContextProvider=(props)=>{
   getAllFavoriteChannelIds()
   getAllFavoriteProgramIds()
    }
- }, [user])
+ }, [])
 
  const getAllFavoriteChannelIds= async ()=>{
     let favoriteChannelIds = await fetch (`/api/v1/favorites/channels`)
     favoriteChannelIds = await favoriteChannelIds.json();
-      setChannelIds(favoriteChannelIds)   
+      setFavoriteChannelIds(favoriteChannelIds)   
   }
 
   const getAllFavoriteProgramIds = async ()=>{
@@ -53,9 +53,20 @@ const FavoriteContextProvider=(props)=>{
     getAllFavoriteProgramIds();
     return result
   }
+
+  const deleteFavoriteChannel =async ( channelId )=>{
+       await fetch(`/api/v1/favorites/channels`,{
+      method:"DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(channelID),
+    })
+    setFavoriteChannelIds(favoriteChannelIds.filter((fchi)=> channelId !==fchi.channelId))
+  }
  
   const values ={
-   channelIds,
+   favoriteChannelIds,
    favoriteProgramIds,
    addCahnnelToFavorites,
    addProgramToFavorites

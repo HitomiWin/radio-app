@@ -8,7 +8,7 @@ import {  HeartFill } from 'react-bootstrap-icons';
 import styles from "../css/Channels.module.css";
 
  const FavoriteChannels=()=> {
-  const { channelIds } = useContext( FavoriteContext );
+  const { favoriteChannelIds } = useContext( FavoriteContext );
   const { channels } = useContext( ChannelContext );
   const [favoriteChannels, setFavoriteChannels ] = useState(null);
   const [showSchedule, setShowSchedule ] = useState(null);
@@ -24,7 +24,7 @@ import styles from "../css/Channels.module.css";
   console.log(favoriteChannels)
   const getChannelsByFavoriteChannelIds=()=>{
     let result = channels.filter((c)=>(
-      channelIds.find((ci)=>(
+      favoriteChannelIds.find((ci)=>(
         c.id===ci.channelId
       ))
     ))
