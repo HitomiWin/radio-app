@@ -32,7 +32,6 @@ function Channels() {
         }
         return channels         
     })
-    // setChannels(channels)
   }
   }
 
