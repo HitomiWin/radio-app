@@ -3,8 +3,8 @@ import { ProgramContext } from "../contexts/ProgramContext";
 import { UserContext } from "../contexts/UserContext";
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import {useHistory} from "react-router-dom"
-import { Card,  Container, Col, Row } from "react-bootstrap";
-import { Tag, Heart } from 'react-bootstrap-icons';
+import { Card,  Container, Col, Row, Button} from "react-bootstrap";
+import { Tag } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
 const ProgramsByChannelId=(props)=> {
   const { programs, getProgramsByChannelId } = useContext( ProgramContext );
@@ -19,8 +19,7 @@ const ProgramsByChannelId=(props)=> {
          // eslint-disable-next-line
   },[props.channelId, programs]);
   
-  const handleOnClickHeart= async (e, programId, channelId)=>{
-
+  const handleOnClickLike= async (e, programId, channelId)=>{
     e.stopPropagation()
     let favoriteProgram ={
       programId,
@@ -53,7 +52,7 @@ const ProgramsByChannelId=(props)=> {
        </Col>
        {user &&
        <Col  xs={1}  style={{paddingTop:"1.25rem"}} className={styles.heart} >
-           <Heart className={styles.heartIcon} size={25}  onClick={(e)=>{handleOnClickHeart(e,program.id, props.channelId)}}/ > 
+           <Button variant="info"  onClick={(e)=>{handleOnClickLike(e,program.id, props.channelId)}}>Like</Button> 
         </Col> }    
        </Row>
      </Card>

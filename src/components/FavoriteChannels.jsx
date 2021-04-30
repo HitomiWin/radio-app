@@ -3,17 +3,15 @@ import { FavoriteContext } from "../contexts/FavoriteContext";
 import { ChannelContext } from "../contexts/ChannelContext";
 import ChannelSchedule from "./ChannelSchedule"
 import { Card, Container, Col, Row } from "react-bootstrap";
-import {  HeartFill } from 'react-bootstrap-icons';
+import { Trash } from 'react-bootstrap-icons';
 import styles from "../css/Channels.module.css";
 
  const FavoriteChannels=()=> {
-  const { favoriteChannelIds, deleteFavoriteChannel } = useContext( FavoriteContext );
+  const { favoriteChannelIds, deleteFavoriteChannel, showSchedule, setShowSchedule  } = useContext( FavoriteContext );
   const { channels } = useContext( ChannelContext );
   const [favoriteChannels, setFavoriteChannels ] = useState(null);
-  const [showSchedule, setShowSchedule ] = useState(null);
   const [channelIdToSchedule, setChannelIdToSchedule ] = useState(null)
-
-  
+ 
   useEffect(() => {
     if(channels){
       getChannelsByFavoriteChannelIds();
@@ -49,7 +47,7 @@ import styles from "../css/Channels.module.css";
         </Card.Body>
         </Col>
         <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
-        <HeartFill  onClick={(e)=>{deleteFavoriteChannel(e, channel.id)}} color="red" size={25}  / >
+        <Trash onClick={(e)=>{deleteFavoriteChannel(e, channel.id)}} color="Gray" size={25}  / >
         </Col>
         </Row>
       </Card>
@@ -63,9 +61,8 @@ import styles from "../css/Channels.module.css";
     </h1>
     {showSchedule? 
     < ChannelSchedule channelId = {channelIdToSchedule} />
-
     :<Container className="d-flex justify-content-center flex-wrap"  >
-    {!favoriteChannels || favoriteChannels.length==0 ?    
+    {!favoriteChannels ? <p>Loading...</p> : favoriteChannels.length==0 ?    
       <p>Favorite Channels Not Found </p>
       :<Row lg={2}>      
       {renderFavoriteChannels()}     

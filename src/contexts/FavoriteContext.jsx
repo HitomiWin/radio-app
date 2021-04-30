@@ -6,6 +6,7 @@ const FavoriteContextProvider=(props)=>{
  const { user }=useContext( UserContext )
  const [ favoriteChannelIds, setFavoriteChannelIds ]= useState(null);
  const [ favoriteProgramIds, setFavoriteProgramIds ] = useState(null);
+ const [showSchedule, setShowSchedule ] = useState(null);
  
 
  useEffect(() => {
@@ -53,8 +54,8 @@ const FavoriteContextProvider=(props)=>{
     return result
   }
 
-  const deleteFavoriteChannel =async ( channelId )=>{
-
+  const deleteFavoriteChannel =async (e, channelId )=>{
+    e.stopPropagation();
       await fetch(`/api/v1/favorites/channels/${channelId}`,{
       method:"DELETE",
       headers: {
@@ -62,7 +63,6 @@ const FavoriteContextProvider=(props)=>{
       },
     })
     setFavoriteChannelIds(favoriteChannelIds.filter((ch)=> channelId !==ch.channelId));
-    getAllFavoriteChannelIds()
   }
  
   const deleteFavoriteProgram =async (e, programId )=>{
@@ -72,11 +72,8 @@ const FavoriteContextProvider=(props)=>{
       headers: {
         "content-type": "application/json",
       },
-    })
-    
+    })  
     setFavoriteProgramIds(favoriteProgramIds.filter((p)=> programId !==p.programId));
-    getAllFavoriteProgramIds();
-
   }
  
   const values ={
@@ -85,7 +82,9 @@ const FavoriteContextProvider=(props)=>{
    addCahnnelToFavorites,
    addProgramToFavorites,
    deleteFavoriteChannel,
-   deleteFavoriteProgram
+   deleteFavoriteProgram,
+   showSchedule,
+   setShowSchedule
   }
 
   return (

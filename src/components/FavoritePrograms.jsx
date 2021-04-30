@@ -4,7 +4,7 @@ import { FavoriteContext } from "../contexts/FavoriteContext";
 import { ProgramContext } from "../contexts/ProgramContext";
 import { useHistory } from "react-router-dom";
 import { Card, Container, Col, Row } from "react-bootstrap";
-import { Tag, HeartFill } from 'react-bootstrap-icons';
+import { Tag, Trash } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
 
  const FavoritePrograms=()=> {
@@ -30,7 +30,7 @@ import styles from "../css/ProgramsPage.module.css"
     history.push(`/programs/allprogram/${programId}`)
   }
 
-  const handleOnclickHeart=(e, programId)=>{
+  const handleOnclickTrash=(e, programId)=>{
     e.stopPropagation();
     deleteFavoriteProgram(programId)
   }
@@ -53,7 +53,7 @@ import styles from "../css/ProgramsPage.module.css"
         </Card.Body>
         </Col>
         <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
-            <HeartFill onClick={(e)=>{handleOnclickHeart(e, program.id)}} color="red" size={25} / > 
+            <Trash onClick={(e)=>{handleOnclickTrash(e, program.id)}} color="gray" size={25} / > 
          </Col>     
         </Row>
       </Card>

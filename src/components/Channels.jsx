@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { ChannelContext } from "../contexts/ChannelContext";
 import { UserContext } from "../contexts/UserContext"
 import { FavoriteContext } from "../contexts/FavoriteContext";
-import { Card, Container, Col, Row } from "react-bootstrap";
+import { Card, Container, Col, Row, Button } from "react-bootstrap";
 import { Heart , HeartFill} from 'react-bootstrap-icons';
 import styles from "../css/Channels.module.css";
 
@@ -13,34 +13,12 @@ function Channels() {
   const { user } = useContext ( UserContext );
   const history = useHistory();
 
-  useEffect(()=>{
-  if(user){
-    getFavoriteHeart();
-  }
-  },[channels, favoriteChannelIds])
-
-  const getFavoriteHeart=()=>{
-    if(favoriteChannelIds && channels){
-    channels.map((channel)=>{    
-        let result = favoriteChannelIds.find((ci)=>(
-          channel.id===ci.channelId
-        )) 
-        if(result){
-          channel.favorite=true
-        }else{
-          channel.favorite=false
-        }
-        return channels         
-    })
-  }
-  }
-
   const handleClick = (channelId) => {
     history.push(`/programs/${channelId}`);
   };
   
-  const handleOnClickGrayHeart= async (channelId)=>{
-    // e.stopPropagation();
+  const handleOnClickLike= async (e, channelId)=>{
+    e.stopPropagation();
     let favoriteChannel ={
       userId:user.userId,
       channelId,
@@ -52,17 +30,7 @@ function Channels() {
       console.log(result.error)
     }
   };
-  const toggleColor=(e, channelId, favorite)=>{ 
-    e.stopPropagation();
-    if(favorite){
-      deleteFavoriteChannel(channelId)
-      console.log("clickedRed")
-    }else{
-      handleOnClickGrayHeart(channelId)
 
-      console.log("clickedgray")
-    }
-  }
  
 
   const renderChannels = () => {
@@ -79,8 +47,8 @@ function Channels() {
           </Card.Body>
           </Col>
           { user && 
-          <Col xs={1}  style={{paddingTop:"1.25rem"}} className={styles.heart}>       
-             <HeartFill color={`${channel.favorite? "red" :"gray"}`} size={25} onClick={(e)=>toggleColor(e, channel.id, channel.favorite)}/> 
+          <Col xs={2}  style={{paddingTop:"1.25rem"}} >       
+            <Button variant="secondary" onClick={(e)=>{ handleOnClickLike (e, channel.id)}}>Like</Button>
           </Col>
         }
           </Row>

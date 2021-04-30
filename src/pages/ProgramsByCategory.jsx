@@ -4,8 +4,8 @@ import { CategoryContext } from "../contexts/CategoryContext"
 import { ProgramContext } from "../contexts/ProgramContext"
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import { UserContext } from "../contexts/UserContext";
-import { Card, Container, Col, Row } from "react-bootstrap";
-import { Tag, Heart } from 'react-bootstrap-icons';
+import { Card, Container, Col, Row, Button} from "react-bootstrap";
+import { Tag } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsByCategory.module.css"
 
 
@@ -25,8 +25,7 @@ const ProgramsByCategory = (props) => {
   const handleClick=(programId)=>{
     history.push(`/programs/allprogram/${programId}`)
   }  
-  const handleOnClickHeart= async (e, programId, channelId)=>{
-
+  const handleOnClickLike= async (e, programId, channelId)=>{
     e.stopPropagation()
     let favoriteProgram ={
       programId,
@@ -66,7 +65,7 @@ const ProgramsByCategory = (props) => {
         </Col>
         {user &&
        <Col  xs={1}  style={{paddingTop:"1.25rem"}} className={styles.heart}>
-           <Heart className={styles.heartIcon}  size={25}  onClick={(e)=>{handleOnClickHeart(e,program.id, props.channelId)}}/ > 
+            <Button variant="secondary"  onClick={(e)=>{handleOnClickLike(e,program.id, props.channelId)}}>Like</Button> 
         </Col> }    
         </Row>
       </Card>
