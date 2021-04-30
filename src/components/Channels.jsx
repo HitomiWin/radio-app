@@ -1,17 +1,40 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { ChannelContext } from "../contexts/ChannelContext";
 import { UserContext } from "../contexts/UserContext"
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import { Card, Container, Col, Row } from "react-bootstrap";
-import { Heart } from 'react-bootstrap-icons';
+import { Heart , HeartFill} from 'react-bootstrap-icons';
 import styles from "../css/Channels.module.css";
 
-function Channels(props) {
-  const { channels } = useContext(ChannelContext);
-  const { addCahnnelToFavorites } = useContext( FavoriteContext );
+function Channels() {
+  const { channels, setChannels, getFavoriteChannelIds  } = useContext(ChannelContext);
+  const { addCahnnelToFavorites, favoriteChannelIds, deleteFavoriteChannel} = useContext( FavoriteContext );
   const { user } = useContext ( UserContext );
   const history = useHistory();
+
+  useEffect(()=>{
+  if(user){
+    getFavoriteHeart();
+  }
+  },[channels,favoriteChannelIds])
+
+  const getFavoriteHeart=()=>{
+    if(favoriteChannelIds){
+    channels.map((channel)=>{    
+        let result = favoriteChannelIds.find((ci)=>(
+          channel.id===ci.channelId
+        )) 
+        if(result){
+          channel.favorite=true
+        }else{
+          channel.favorite=false
+        }
+        return channels         
+    })
+    // setChannels(channels)
+  }
+  }
 
   const handleClick = (channelId) => {
     history.push(`/programs/${channelId}`);
@@ -30,7 +53,7 @@ function Channels(props) {
       console.log(result.error)
     }
   };
-
+  
   const renderChannels = () => {
     return channels.map((channel) => (
         <Card key={channel.id} className={styles.card} onClick={() => handleClick(channel.id) }>
@@ -46,7 +69,8 @@ function Channels(props) {
           </Col>
           { user && 
           <Col  xs={1}  style={{paddingTop:"1.25rem"}} className={styles.heart}>
-          <Heart className={styles.heartIcon} size={25} onClick={(e)=>{handleOnClickHeart(e,channel.id)}} / >
+            {channel.favorite?  <HeartFill color="red" size={25} onClick={(e)=>{deleteFavoriteChannel(e, channel.id)}}   / >
+          :<Heart className={styles.heartIcon} size={25} onClick={(e)=>{handleOnClickHeart( e, channel.id)}} / >}
           </Col>}
           </Row>
         </Card>

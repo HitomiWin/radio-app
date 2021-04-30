@@ -49,7 +49,7 @@ import styles from "../css/Channels.module.css";
         </Card.Body>
         </Col>
         <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
-        <HeartFill  onClick={()=>{deleteFavoriteChannel(channel.id)}} color="red" size={25}  / >
+        <HeartFill  onClick={(e)=>{deleteFavoriteChannel(e, channel.id)}} color="red" size={25}  / >
         </Col>
         </Row>
       </Card>

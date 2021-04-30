@@ -56,13 +56,6 @@
   }
 
 }
-@media only screen and (min-width: 768px) {
-  .card {
-    height:20vh;
-    }
-
-}
-
 
 /* programsByChannelId */
 .programs{

@@ -41,7 +41,6 @@ const FavoriteContextProvider=(props)=>{
   }
 
   const addProgramToFavorites = async (programId, channelId)=>{
-
     let result = await fetch (`/api/v1/programs/${channelId}`, {
       method:"POST",
       headers:{
@@ -54,15 +53,16 @@ const FavoriteContextProvider=(props)=>{
     return result
   }
 
-  const deleteFavoriteChannel =async ( channelId )=>{
-    console.log(channelId)
+  const deleteFavoriteChannel =async (e, channelId )=>{
+      e.stopPropagation();
       await fetch(`/api/v1/favorites/channels/${channelId}`,{
       method:"DELETE",
       headers: {
         "content-type": "application/json",
       },
     })
-    setFavoriteChannelIds(favoriteChannelIds.filter((ch)=> channelId !==ch.channelId))
+    setFavoriteChannelIds(favoriteChannelIds.filter((ch)=> channelId !==ch.channelId));
+    getAllFavoriteChannelIds()
   }
  
   const deleteFavoriteProgram =async ( programId )=>{
@@ -74,6 +74,7 @@ const FavoriteContextProvider=(props)=>{
     })
     
     setFavoriteProgramIds(favoriteProgramIds.filter((p)=> programId !==p.programId));
+    getAllFavoriteProgramIds();
 
   }
  
