@@ -27,6 +27,7 @@ const FavoriteChannels = () => {
   }, [favoriteChannelIds]);
 
   const getChannelsByFavoriteChannelIds = () => {
+
     let result = channels.filter((c) =>
       favoriteChannelIds.find((ci) => c.id === ci.channelId)
     );
