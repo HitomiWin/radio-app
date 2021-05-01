@@ -25,8 +25,9 @@ const FavoritePage =()=>{
     const renderMenuBar=()=>{
       return (   
        <ul className={styles.favoriteMenuList} >
-         <li className={styles.favoriteListItem} onClick={()=>handleOnclickChannels()}>Mina Kanaler</li>
-         <li className={styles.favoriteListItem} onClick={()=>handleOnclickPrograms()}>Mina Program</li>
+         <li className={`${styles.favoriteListItem} ${showChannels? styles.inactive : styles.active}`} onClick={()=>handleOnclickChannels()}>Mina Kanaler</li>
+         <li className={`${styles.favoriteListItem
+         } ${showChannels ? styles.active : styles.inactive}`} onClick={()=>handleOnclickPrograms()}>Mina Program</li>
        </ul>
       )
     }

@@ -32,7 +32,7 @@ li {
   margin-right:1rem
 }
 .active{
-  color:rgb(97, 92, 92);
+  color:rgb(82, 77, 77);
   font-weight:700;
   padding-left: .5rem;
   margin-right:1rem
@@ -61,8 +61,15 @@ li {
   list-style-type: none;
   display:flex;
   justify-content: center;
+
 }
-.favoriteListItem{
+.favoriteListItem .active {
+  color:rgb(82, 77, 77);
+  font-size: 1.5rem;
+  padding-left: .5rem;
+  margin-right:1rem
+}
+.favoriteListItem .inactive{
   color:gray;
   font-size: 1.5rem;
   padding-left: .5rem;
