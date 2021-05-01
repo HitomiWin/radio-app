@@ -23,11 +23,14 @@ const ProgramPage = (props) => {
     getFavoriteHeart();
     // eslint-disable-next-line
   }, [user]);
+  useEffect(()=>{
+    getFavoriteHeart();
+  },[programId,  favoriteProgramIds])
 
   const getFavoriteHeart = () => {
     if (favoriteProgramIds && program) {
       let result = favoriteProgramIds.find(
-        (fpi) => program.id === fpi.programId
+        (fpi) => fpi.programId == programId
       );
       if (result) {
         setIsFavorite(true);
@@ -36,7 +39,7 @@ const ProgramPage = (props) => {
       }
     }
   };
-  const handleOnClickGrayHeart = async (e, channelId) => {
+  const handleOnClickGrayHeart = async (e, programId) => {
     e.stopPropagation();
     setIsFavorite(!isFavorite);
     let favoriteProgram = {
@@ -49,9 +52,9 @@ const ProgramPage = (props) => {
       console.log(result.error);
     }
   };
-  const handleOnClickRedHeart = (e, channelId) => {
+  const handleOnClickRedHeart = (e, programId) => {
     setIsFavorite(!isFavorite);
-    deleteFavoriteProgram(e, channelId);
+    deleteFavoriteProgram(e, programId);
   };
 
   const renderMenuBar = () => {
@@ -69,8 +72,7 @@ const ProgramPage = (props) => {
           <li>
             {isFavorite ? (
               <HeartFill
-              color="IndianRed"
-                
+              color="IndianRed"                
                 size={25}
                 onClick={(e) => {
                   handleOnClickRedHeart(e, program.id);

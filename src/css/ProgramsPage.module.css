@@ -26,13 +26,24 @@ li {
 .channelImage{
   width:50px;
 }
-.listItem{
+.inactive {
   color:gray;
-  text-decoration: underline;
   padding-left: .5rem;
   margin-right:1rem
 }
-.listItem:hover{
+.active{
+  color:rgb(97, 92, 92);
+  font-weight:700;
+  padding-left: .5rem;
+  margin-right:1rem
+}
+.active:hover{
+  cursor: pointer;
+  text-decoration: underline;
+  color:black; cursor: pointer;
+}
+.inactive:hover{
+  cursor: pointer;
   text-decoration: underline;
   color:black;
 }
@@ -65,9 +76,13 @@ li {
 
 
 @media only screen and (min-width: 576px) {
-  .listItem{
+.inactive{
     font-size: 1.5rem;
     margin-right: 2rem;
+  }
+ .active{
+  font-size: 1.5rem;
+  margin-right: 2rem;
   }
   .channelImage{
     width:100px;

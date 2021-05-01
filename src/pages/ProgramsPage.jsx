@@ -13,8 +13,8 @@ const ChannelSchedule = React.lazy(() =>
 );
 
 const ProgramsPage = (props) => {
-  const { singleChannel, getChannelById } = useContext(ChannelContext);
   const { channelId } = props.match.params;
+  const { singleChannel, getChannelById } = useContext(ChannelContext);
   const {
     deleteFavoriteChannel,
     addChannelToFavorites,
@@ -22,26 +22,27 @@ const ProgramsPage = (props) => {
   } = useContext(FavoriteContext);
   const { user } = useContext(UserContext);
   const [showPrograms, setShowPrograms] = useState(true);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isChannelFavorite, setIsChannelFavorite] = useState(false);
 
   useEffect(() => {
     getChannelById(channelId);
+    // eslint-disable-next-line
+  }, [user]);
+  useEffect(()=>{
     getFavoriteHeart();
     // eslint-disable-next-line
-  }, [favoriteChannelIds, user]);
+  },[ channelId, favoriteChannelIds ])
 
-  const getFavoriteHeart = () => {
+  const getFavoriteHeart =  () => {
     if (favoriteChannelIds && singleChannel) {
-      favoriteChannelIds.forEach((channel) => {
-        let result = favoriteChannelIds.find(
-          (fci) => singleChannel.id === fci.channelId
-        );
-        if (result) {
-          setIsFavorite(true);
-        } else {
-          setIsFavorite(false);
-        }
-      });
+        let result =  favoriteChannelIds.find(
+          (fci) =>  fci.channelId == channelId
+        ); 
+        if(result){ 
+            setIsChannelFavorite(true);
+          } else {
+            setIsChannelFavorite(false);
+        }   
     }
   };
 
@@ -53,7 +54,7 @@ const ProgramsPage = (props) => {
   };
   const handleOnClickGrayHeart = async (e, channelId) => {
     e.stopPropagation();
-    setIsFavorite(!isFavorite);
+    setIsChannelFavorite(!isChannelFavorite);
     let favoriteChannel = {
       channelId,
     };
@@ -65,7 +66,7 @@ const ProgramsPage = (props) => {
     }
   };
   const handleOnClickRedHeart = (e, channelId) => {
-    setIsFavorite(!isFavorite);
+    setIsChannelFavorite(!isChannelFavorite);
     deleteFavoriteChannel(e, channelId);
   };
 
@@ -79,15 +80,15 @@ const ProgramsPage = (props) => {
             alt="channel"
           />
         </li>
-        <li className={styles.listItem} onClick={() => handleOnclickSchedule()}>
+        <li className={`${styles.listItem} ${showPrograms ? styles.inactive : styles.active}`} onClick={() => handleOnclickSchedule()}>
           Tablå
         </li>
-        <li className={styles.listItem} onClick={() => handleOnclickProgram()}>
+        <li className={`${styles.listItem} ${showPrograms ? styles.active : styles.inactive}`} onClick={() => handleOnclickProgram()}>
           {singleChannel.name} Program
         </li>
         {user && (
           <li>
-            {isFavorite ? (
+            {isChannelFavorite ? (
               <HeartFill
                 color="IndianRed "
                 size={25}

@@ -1,7 +1,5 @@
 import  { useContext, useEffect } from "react";
 import { ProgramContext } from "../contexts/ProgramContext";
-import { UserContext } from "../contexts/UserContext";
-import { FavoriteContext } from "../contexts/FavoriteContext";
 import Back from "./Back"
 import {useHistory} from "react-router-dom"
 import { Card,  Container, Col, Row} from "react-bootstrap";
@@ -10,7 +8,6 @@ import styles from "../css/ProgramsPage.module.css"
 
 const ProgramsByChannelId=(props)=> {
   const { programs, getProgramsByChannelId } = useContext( ProgramContext );
-  const { addProgramToFavorites } = useContext( FavoriteContext );
   const history =useHistory();
   const handleClick=(programId)=>{
     history.push(`/programs/allprogram/${programId}`)
