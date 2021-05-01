@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, Suspense } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { ProgramContext } from "../contexts/ProgramContext";
 import { FavoriteContext } from "../contexts/FavoriteContext";
-import {Spinner} from "react-bootstrap"
+import { Spinner } from "react-bootstrap";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import styles from "../css/ProgramsPage.module.css";
 const ProgramInfo = React.lazy(() => import("../components/ProgramInfo"));
@@ -23,15 +23,13 @@ const ProgramPage = (props) => {
     getFavoriteHeart();
     // eslint-disable-next-line
   }, [user]);
-  useEffect(()=>{
+  useEffect(() => {
     getFavoriteHeart();
-  },[programId,  favoriteProgramIds])
+  }, [programId, favoriteProgramIds]);
 
   const getFavoriteHeart = () => {
     if (favoriteProgramIds && program) {
-      let result = favoriteProgramIds.find(
-        (fpi) => fpi.programId == programId
-      );
+      let result = favoriteProgramIds.find((fpi) => fpi.programId == programId);
       if (result) {
         setIsFavorite(true);
       } else {
@@ -72,7 +70,7 @@ const ProgramPage = (props) => {
           <li>
             {isFavorite ? (
               <HeartFill
-              color="IndianRed"                
+                color="IndianRed"
                 size={25}
                 onClick={(e) => {
                   handleOnClickRedHeart(e, program.id);
@@ -96,12 +94,12 @@ const ProgramPage = (props) => {
 
   return (
     <Suspense
-    className="text-center"
-    fallback={<Spinner animation="border" variant="secondary" />}
-  >
-      {program && renderMenuBar() }
+      className="text-center"
+      fallback={<Spinner animation="border" variant="secondary" />}
+    >
+      {program && renderMenuBar()}
       {program && <ProgramInfo />}
-      </Suspense>
+    </Suspense>
   );
 };
 

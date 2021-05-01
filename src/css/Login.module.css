@@ -8,15 +8,15 @@
 
 .errorBox.active {
   display: block;
-  color:red
+  color: red;
 }
 
 .errorBox.inactive {
-  display: none
+  display: none;
 }
 
 .singInButton {
-  margin-top:2rem;
+  margin-top: 2rem;
   width: 60%;
   border: none;
 }

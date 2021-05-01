@@ -28,21 +28,21 @@ const ProgramsPage = (props) => {
     getChannelById(channelId);
     // eslint-disable-next-line
   }, [user]);
-  useEffect(()=>{
+  useEffect(() => {
     getFavoriteHeart();
     // eslint-disable-next-line
-  },[ channelId, favoriteChannelIds ])
+  }, [channelId, favoriteChannelIds]);
 
-  const getFavoriteHeart =  () => {
+  const getFavoriteHeart = () => {
     if (favoriteChannelIds && singleChannel) {
-        let result =  favoriteChannelIds.find(
-          (fci) =>  fci.channelId == channelId
-        ); 
-        if(result){ 
-            setIsChannelFavorite(true);
-          } else {
-            setIsChannelFavorite(false);
-        }   
+      let result = favoriteChannelIds.find(
+        (fci) => fci.channelId == singleChannel.id
+      );
+      if (result) {
+        setIsChannelFavorite(true);
+      } else {
+        setIsChannelFavorite(false);
+      }
     }
   };
 
@@ -80,10 +80,20 @@ const ProgramsPage = (props) => {
             alt="channel"
           />
         </li>
-        <li className={`${styles.listItem} ${showPrograms ? styles.inactive : styles.active}`} onClick={() => handleOnclickSchedule()}>
+        <li
+          className={`${styles.listItem} ${
+            showPrograms ? styles.inactive : styles.active
+          }`}
+          onClick={() => handleOnclickSchedule()}
+        >
           Tablå
         </li>
-        <li className={`${styles.listItem} ${showPrograms ? styles.active : styles.inactive}`} onClick={() => handleOnclickProgram()}>
+        <li
+          className={`${styles.listItem} ${
+            showPrograms ? styles.active : styles.inactive
+          }`}
+          onClick={() => handleOnclickProgram()}
+        >
           {singleChannel.name} Program
         </li>
         {user && (
@@ -105,7 +115,7 @@ const ProgramsPage = (props) => {
                   handleOnClickGrayHeart(e, singleChannel.id);
                 }}
               />
-            )}       
+            )}
           </li>
         )}
       </ul>
@@ -114,7 +124,7 @@ const ProgramsPage = (props) => {
 
   return (
     <div className={styles.programPage}>
-        {singleChannel && renderMenuBar()}
+      {singleChannel && renderMenuBar()}
       <Suspense
         className="text-center"
         fallback={<Spinner animation="border" variant="secondary" />}

@@ -1,13 +1,13 @@
-.programinfo{
+.programinfo {
   margin-top: 2rem;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 .card {
-  width:80%
+  width: 80%;
 }
-.info{
- color:rgb(61, 60, 60);
- font-weight:700;
+.info {
+  color: rgb(61, 60, 60);
+  font-weight: 700;
 }

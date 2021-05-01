@@ -1,14 +1,14 @@
-.loginPage{
+.loginPage {
   min-height: 80vh;
 }
-.toggleText{
-  margin-top:2rem;
-  font-size:1.2rem;
+.toggleText {
+  margin-top: 2rem;
+  font-size: 1.2rem;
   cursor: pointer;
   text-align: center;
   text-decoration: underline;
 }
 
-.toggleText:hover{
-  color:rgb(57, 116, 194);
+.toggleText:hover {
+  color: rgb(57, 116, 194);
 }

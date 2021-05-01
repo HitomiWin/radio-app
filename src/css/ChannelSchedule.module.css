@@ -1,49 +1,49 @@
-.menubar{
-  display:flex;
-  justify-content:center;
-  margin-top:2rem;
-  margin-bottom:1rem;
+.menubar {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
-.menuList{
+.menuList {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  display:flex;
+  display: flex;
   align-items: center;
 }
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }
 
-.channelImage{
-  width:50px;
+.channelImage {
+  width: 50px;
 }
-.listItem .inactive{
-  color:gray;
-  text-decoration:none;
-  margin:1rem
+.listItem .inactive {
+  color: gray;
+  text-decoration: none;
+  margin: 1rem;
 }
-.listItem .active{
-  color:black;
+.listItem .active {
+  color: black;
   font-weight: 700;
   text-decoration: underline;
-  margin:1rem
+  margin: 1rem;
 }
 
-.listItem :hover{
-  cursor:pointer;
+.listItem :hover {
+  cursor: pointer;
   text-decoration: underline;
-  color:white;
+  color: white;
   background-color: rgb(128, 128, 128);
 }
 
 .time {
-  font-weight:800;
+  font-weight: 800;
   text-align: center;
   padding-top: 1.25rem;
 }
 .calendar {
-  display:inline-block;
+  display: inline-block;
 }

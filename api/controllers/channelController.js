@@ -13,11 +13,11 @@ const getAllChannels = async (req, res) => {
     `http://api.sr.se/api/v2/channels?${json}&${paginationFalse}`
   );
   channels = await channels.json();
- 
-   if(channels.channels.length>0){
-     console.log("Runs after the query")
-     res.json(channels.channels);
-   }
+
+  if (channels.channels.length > 0) {
+    console.log("Runs after the query")
+    res.json(channels.channels);
+  }
 };
 
 const getChannelById = async (req, res) => {
@@ -46,25 +46,25 @@ const getChannelSchedule = async (req, res) => {
   res.json(channelSchedule.schedule);
 };
 
-const addChannelToFavorites = async (req, res )=>{
-  let query =/*sql*/`SELECT * FROM usersXchannels WHERE  channelId=$channelId AND userId=$userId`;
+const addChannelToFavorites = async (req, res) => {
+  let query = /*sql*/ `SELECT * FROM usersXchannels WHERE  channelId=$channelId AND userId=$userId`;
   let params = {
     $userId: req.session.user.userId,
-    $channelId : req.body.channelId
+    $channelId: req.body.channelId
   }
-  db.get(query, params, (err, result ) =>{
-    console.log("result :",result)
-    if(result){
+  db.get(query, params, (err, result) => {
+    console.log("result :", result)
+    if (result) {
       res.json({
-        error:" The channel already exists"
+        error: " The channel already exists"
       })
     } else {
 
-       query =/*sql*/`INSERT INTO usersXchannels (userId, channelId) VALUES ($userId, $channelId)`
-    
-       params ={
-        $userId:req.session.user.userId,
-        $channelId:req.body.channelId,   
+      query = /*sql*/ `INSERT INTO usersXchannels (userId, channelId) VALUES ($userId, $channelId)`
+
+      params = {
+        $userId: req.session.user.userId,
+        $channelId: req.body.channelId,
       }
       db.run(query, params, function (err) {
         if (err) {
@@ -80,7 +80,7 @@ const addChannelToFavorites = async (req, res )=>{
         })
       })
     }
-    
+
   })
 
 }

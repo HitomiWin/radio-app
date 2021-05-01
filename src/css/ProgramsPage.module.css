@@ -1,107 +1,105 @@
 li {
-  margin-right:.5rem
+  margin-right: 0.5rem;
 }
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  height:20vh;
-  margin-bottom: .5rem;
-  padding-left:.5rem;
-  padding-right:.5rem
+  height: 20vh;
+  margin-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
-.card:hover{
+.card:hover {
   cursor: pointer;
   background-color: rgba(161, 160, 160, 0.2);
 }
 
-.menuList{
-  background-color:rgba(211, 211, 211, 0.52) ;
+.menuList {
+  background-color: rgba(211, 211, 211, 0.52);
   list-style-type: none;
   margin: 0;
   padding: 0;
-  display:flex;
+  display: flex;
   align-items: center;
 }
 
-.channelImage{
-  width:50px;
+.channelImage {
+  width: 50px;
 }
 .inactive {
-  color:gray;
-  padding-left: .5rem;
-  margin-right:1rem
+  color: gray;
+  padding-left: 0.5rem;
+  margin-right: 1rem;
 }
-.active{
-  color:rgb(82, 77, 77);
-  font-weight:700;
-  padding-left: .5rem;
-  margin-right:1rem
+.active {
+  color: rgb(82, 77, 77);
+  font-weight: 700;
+  padding-left: 0.5rem;
+  margin-right: 1rem;
 }
-.active:hover{
+.active:hover {
   cursor: pointer;
   text-decoration: underline;
-  color:black; cursor: pointer;
+  color: black;
+  cursor: pointer;
 }
-.inactive:hover{
+.inactive:hover {
   cursor: pointer;
   text-decoration: underline;
-  color:black;
+  color: black;
 }
 
-.heart .heartIcon{
-  color:gray;
+.heart .heartIcon {
+  color: gray;
 }
 
-.heart .heartIcon:hover{
-  color:red;
+.heart .heartIcon:hover {
+  color: red;
 }
 
-.favoriteMenuList{
-  background-color:rgba(211, 211, 211, 0.52) ;
+.favoriteMenuList {
+  background-color: rgba(211, 211, 211, 0.52);
   list-style-type: none;
-  display:flex;
+  display: flex;
   justify-content: center;
-
 }
 .favoriteListItem .active {
-  color:rgb(82, 77, 77);
+  color: rgb(82, 77, 77);
   font-size: 1.5rem;
-  padding-left: .5rem;
-  margin-right:1rem
+  padding-left: 0.5rem;
+  margin-right: 1rem;
 }
-.favoriteListItem .inactive{
-  color:gray;
+.favoriteListItem .inactive {
+  color: gray;
   font-size: 1.5rem;
-  padding-left: .5rem;
-  margin-right:1rem
+  padding-left: 0.5rem;
+  margin-right: 1rem;
 }
 
-.favoriteListItem:hover{
+.favoriteListItem:hover {
   text-decoration: underline;
-  color:black;
+  color: black;
 }
-
 
 @media only screen and (min-width: 576px) {
-.inactive{
+  .inactive {
     font-size: 1.5rem;
     margin-right: 2rem;
   }
- .active{
-  font-size: 1.5rem;
-  margin-right: 2rem;
-  }
-  .channelImage{
-    width:100px;
-  }
-  .programName {
-    font-size:1.5rem;
+  .active {
+    font-size: 1.5rem;
     margin-right: 2rem;
   }
-
+  .channelImage {
+    width: 100px;
+  }
+  .programName {
+    font-size: 1.5rem;
+    margin-right: 2rem;
+  }
 }
 
 /* programsByChannelId */
-.programs{
-  margin-top:2rem;
+.programs {
+  margin-top: 2rem;
 }

@@ -25,12 +25,9 @@ const ProgramsByCategory = (props) => {
   const handleClick = (programId) => {
     history.push(`/programs/allprogram/${programId}`);
   };
-  
 
   const renderMenuBar = () => {
-    return (
-        <h2 className="title">{category}</h2>
-    );
+    return <h2 className="title">{category}</h2>;
   };
 
   const renderPrograms = () => {
