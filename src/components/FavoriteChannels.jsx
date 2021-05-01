@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom";
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import { ChannelContext } from "../contexts/ChannelContext";
 import ChannelSchedule from "./ChannelSchedule";
@@ -27,18 +27,19 @@ const FavoriteChannels = () => {
   }, [favoriteChannelIds]);
 
   const getChannelsByFavoriteChannelIds = () => {
-
     let result = channels.filter((c) =>
       favoriteChannelIds.find((ci) => c.id === ci.channelId)
     );
-    setFavoriteChannels(result);
+
+    let sorted = [...result].sort((a, b) => (a.name > b.name ? 1 : -1));
+    setFavoriteChannels(sorted);
   };
 
-  const handleOnClickCard =(channelId)=>{
-    history.push(`/programs/${channelId}`)
-  }
+  const handleOnClickCard = (channelId) => {
+    history.push(`/programs/${channelId}`);
+  };
 
-  const handleGoToSchedule = (e,channelId) => {
+  const handleGoToSchedule = (e, channelId) => {
     e.stopPropagation();
     setChannelIdToSchedule(channelId);
     setShowSchedule(true);
@@ -46,7 +47,13 @@ const FavoriteChannels = () => {
 
   const renderFavoriteChannels = () => {
     return favoriteChannels.map((channel) => (
-      <Card key={channel.id} className={styles.card} onClick={()=>{handleOnClickCard(channel.id)}}>
+      <Card
+        key={channel.id}
+        className={styles.card}
+        onClick={() => {
+          handleOnClickCard(channel.id);
+        }}
+      >
         <Row className={styles.row}>
           <Col xs={3} style={{ padding: "1.25rem" }}>
             <Card.Img src={channel.image} alt={"image"} />
@@ -57,7 +64,7 @@ const FavoriteChannels = () => {
               <Card.Text>{channel.tagline}</Card.Text>
               <p
                 className={styles.goToSchedule}
-                onClick={(e) => handleGoToSchedule(e,channel.id)}
+                onClick={(e) => handleGoToSchedule(e, channel.id)}
               >
                 {" "}
                 Tablå &gt; &gt; &gt;
