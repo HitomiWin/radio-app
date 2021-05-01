@@ -20,11 +20,13 @@ const FavoritePrograms = () => {
   }, [favoriteProgramIds]);
 
   const getProgramsByFavoriteProgramIds = () => {
-    if(allPrograms){
-    let result = allPrograms.filter((all) =>
-      favoriteProgramIds.find((fpi) => all.id == fpi.programId)
-    );
-    setFavoritePrograms(result);
+    if (allPrograms) {
+      let result = allPrograms.filter((all) =>
+        favoriteProgramIds.find((fpi) => all.id == fpi.programId)
+      );
+
+      let sorted = [...result].sort((a, b) => (a.name > b.name ? 1 : -1));
+      setFavoritePrograms(sorted);
     }
   };
 
