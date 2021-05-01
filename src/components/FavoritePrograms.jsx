@@ -20,10 +20,12 @@ const FavoritePrograms = () => {
   }, [favoriteProgramIds]);
 
   const getProgramsByFavoriteProgramIds = () => {
+    if(allPrograms){
     let result = allPrograms.filter((all) =>
-      favoriteProgramIds.find((fpi) => all.id === fpi.programId)
+      favoriteProgramIds.find((fpi) => all.id == fpi.programId)
     );
     setFavoritePrograms(result);
+    }
   };
 
   const handleClick = (programId) => {

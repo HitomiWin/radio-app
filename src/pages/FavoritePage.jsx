@@ -1,4 +1,4 @@
-import React, { Suspense ,useState, useContext } from "react"
+import React, { Suspense ,useState, useContext,useEffect} from "react"
 import {FavoriteContext} from "../contexts/FavoriteContext";
 import FavoritePrograms from "../components/FavoritePrograms"
 import { Spinner }from "react-bootstrap"
@@ -6,8 +6,12 @@ import styles from "../css/ProgramsPage.module.css"
 const  FavoriteChannels = React.lazy(()=>import("../components/FavoriteChannels"));
 
 const FavoritePage =()=>{
-    const [ showChannels, setShowChannels]=useState(true)
+    const [ showChannels, setShowChannels]=useState(null)
     const { setShowSchedule }=useContext(FavoriteContext)
+
+    useEffect(()=>{
+      setShowChannels(true)
+    },[])
 
     const handleOnclickChannels=()=>{
       setShowChannels(true)
