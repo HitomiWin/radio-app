@@ -1,9 +1,25 @@
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
+  height:20vh;
+  margin-bottom: .5rem;
+  padding-left:.5rem;
+  padding-right:.5rem
 }
 .card:hover{
   cursor: pointer;
-  transform: scale(1.02);
-  box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+  background-color: rgba(161, 160, 160, 0.2);
+}
+.heart .heartIcon{
+  color:gray;
+}
+
+.heart .heartIcon:hover{
+  color:red;
+}
+@media only screen and (min-width: 576px) {
+  .card{
+    height:20vh;
+  }
+
 }

@@ -1,15 +1,16 @@
-import { useContext, useEffect } from "react";
+import  { useContext, useEffect } from "react";
 import { ProgramContext } from "../contexts/ProgramContext";
 import { UserContext } from "../contexts/UserContext";
 import { FavoriteContext } from "../contexts/FavoriteContext";
+import Back from "./Back"
 import {useHistory} from "react-router-dom"
-import { Card,  Container, Col, Row } from "react-bootstrap";
-import { Tag, Heart } from 'react-bootstrap-icons';
+import { Card,  Container, Col, Row} from "react-bootstrap";
+import { Tag } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
+
 const ProgramsByChannelId=(props)=> {
-  const { programsByChannelId , getProgramsByChannelId } = useContext( ProgramContext );
+  const { programs, getProgramsByChannelId } = useContext( ProgramContext );
   const { addProgramToFavorites } = useContext( FavoriteContext );
-  const { user } = useContext ( UserContext );
   const history =useHistory();
   const handleClick=(programId)=>{
     history.push(`/programs/allprogram/${programId}`)
@@ -17,26 +18,12 @@ const ProgramsByChannelId=(props)=> {
   useEffect(()=>{
     getProgramsByChannelId(props.channelId);
          // eslint-disable-next-line
-  },[props.channelId]);
+  },[props.channelId, programs]);
   
-  const handleOnClickHeart= async (e, programId, channelId)=>{
-
-    e.stopPropagation()
-    let favoriteProgram ={
-      programId,
-    }
-    let result = await  addProgramToFavorites(favoriteProgram, channelId);
-    if (result.success ) {
-      console.log(result.success)
-    } else {
-      console.log(result.error)
-    }
-  };
-
 
   const renderPrograms=()=>{
    return (
-    programsByChannelId.map((program)=>(
+    programs.map((program)=>(
       <Col key={program.id} xs={12} md={12} lg={6}   onClick={() => handleClick(program.id) }>
       <Card className={styles.card} >
       <Row>
@@ -50,11 +37,7 @@ const ProgramsByChannelId=(props)=> {
           <Tag color="gray" size={25} />
            {program.channel["name"]} </Card.Text>
        </Card.Body>
-       </Col>
-       {user &&
-       <Col  xs={1}  style={{paddingTop:"1.25rem"}} >
-           <Heart color="gray" size={25}  onClick={(e)=>{handleOnClickHeart(e,program.id, props.channelId)}}/ > 
-        </Col> }    
+       </Col>  
        </Row>
      </Card>
       </Col>
@@ -63,11 +46,12 @@ const ProgramsByChannelId=(props)=> {
  } 
   return (
     <div className={styles.programs}>
-      <h1 >Program A-Ö</h1>
+      <Back />      
+      <h2 >Program A-Ö</h2>
       <hr />
       <Container >
       <Row >      
-      {programsByChannelId && renderPrograms()}
+      {programs && renderPrograms()}
       </Row> 
       </Container>
     </div>

@@ -25,7 +25,7 @@ const getChannelById = async (req, res) => {
     `http://api.sr.se/api/v2/channels/${req.params.channelId}?${json}`
   );
   channel = await channel.json();
-  res.json(channel);
+  res.json(channel.channel);
 };
 
 //http://localhost:3001/api/v1/channels/schedule/164?date=2021-04-21
@@ -46,9 +46,10 @@ const getChannelSchedule = async (req, res) => {
   res.json(channelSchedule.schedule);
 };
 
-const addChannelToFavoriter = async (req, res )=>{
-  let query =/*sql*/`SELECT * FROM usersXchannels WHERE  channelId=$channelId`;
+const addChannelToFavorites = async (req, res )=>{
+  let query =/*sql*/`SELECT * FROM usersXchannels WHERE  channelId=$channelId AND userId=$userId`;
   let params = {
+    $userId: req.session.user.userId,
     $channelId : req.body.channelId
   }
   db.get(query, params, (err, result ) =>{
@@ -89,5 +90,5 @@ module.exports = {
   getAllChannels,
   getChannelById,
   getChannelSchedule,
-  addChannelToFavoriter
+  addChannelToFavorites
 };

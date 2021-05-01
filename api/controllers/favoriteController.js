@@ -9,8 +9,11 @@ const getAllFavoriteChannels =(req, res)=>{
    $userId:req.session.user.userId
  }
  db.all(query,params,(err, channels)=>{
-     console.log(channels);
-     res.json(channels)
+  if(channels){
+    res.json(channels)
+  }else(
+   res.json({error:"Channels not founds"})
+  )
  })  
 }
 const getAllFavoritePrograms =(req, res)=>{
@@ -22,12 +25,42 @@ const getAllFavoritePrograms =(req, res)=>{
    if(programs){
      res.json(programs)
    }else(
-     console.log("Program Not Found")
+    res.json({error:"Programs not founds"})
    )
  }) 
 }
 
+const deleteFavoriteChannel =(req, res)=>{
+  let query = /*sql*/ `DELETE FROM usersXchannels WHERE userId =$userId AND channelId = $channelId`
+  let params ={
+    $userId : req.session.user.userId,
+    $channelId : req.params.channelId
+  }
+  db.run(query, params, function(err) {
+    res.json({
+      success:" The Channel has been deleted ",
+      changes: this.changes
+    })
+  })
+}
+
+const deleteFavoriteProgram =(req, res)=>{
+  let query = /*sql*/ `DELETE FROM usersXprograms WHERE userId =$userId AND programId = $programId`
+  let params ={
+    $userId : req.session.user.userId,
+    $programId : req.params.programId
+  }
+  db.run(query, params, function(err) {
+    res.json({
+      success:" The Program has been deleted ",
+      changes: this.changes
+    })
+  })
+}
+
 module.exports={
   getAllFavoriteChannels,
-  getAllFavoritePrograms
+  getAllFavoritePrograms,
+  deleteFavoriteChannel,
+  deleteFavoriteProgram
 }

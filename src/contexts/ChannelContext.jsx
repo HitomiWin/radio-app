@@ -5,39 +5,43 @@ const ChannelContextProvider = (props) => {
   const [channels, setChannels] = useState(null);
   const [singleChannel, setSingleChannel] = useState(null);
   const [schedule, setSchedule] = useState(null);
-  
+
   useEffect(() => {
     // eslint-disable-next-line
     getAllChannels();
   }, []);
 
   const getAllChannels = async () => {
-    let channels = await fetch("/api/v1/channels");
-    channels = await channels.json();
-    if (channels) {
-      setChannels(channels);
-    } else {
-      console.log("No result");
+    let fetchedchannels = await fetch("/api/v1/channels");
+    fetchedchannels = await fetchedchannels.json();
+    if (fetchedchannels) {
+      setChannels(fetchedchannels);
     }
   };
-  const getChannelById = async (channelId)=>{
-    let channel = await fetch(`/api/v1/channels/${channelId}`);
-    channel = await channel.json();
-    setSingleChannel(channel.channel)
-  }
 
-  const  getChannelSchedule= async (channelId,date)=>{
-    let schedule = await fetch (`/api/v1/channels/schedule/${channelId}?date=${date}`);
-    schedule = await schedule.json();
-    setSchedule(schedule);
-  }
+  const getChannelById = async (channelId) => {
+    let fetchedchannel = await fetch(`/api/v1/channels/${channelId}`);
+    fetchedchannel = await fetchedchannel.json();
+    if (fetchedchannel) {
+      setSingleChannel(fetchedchannel);
+    }
+  };
+
+  const getChannelSchedule = async (channelId, date) => {
+    let fetchedschedule = await fetch(
+      `/api/v1/channels/schedule/${channelId}?date=${date}`
+    );
+    fetchedschedule = await fetchedschedule.json();
+    setSchedule(fetchedschedule);
+  };
 
   const values = {
+    setChannels,
     channels,
     singleChannel,
     getChannelById,
     schedule,
-    getChannelSchedule
+    getChannelSchedule,
   };
 
   return (

@@ -11,14 +11,15 @@ import ProgramsByCategory from "./pages/ProgramsByCategory";
 import UserContextProvider from "./contexts/UserContext";
 import LoginPage from "./pages/LoginPage";
 import FavoritePage from "./pages/FavoritePage"
+
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <BrowserRouter>
-        <UserContextProvider>
-          <CategoryContextProvider>
-            <ProgramContextProvider>
-              <ChannelContextProvider>
+      <UserContextProvider>
+        <ChannelContextProvider>
+            <CategoryContextProvider>
+              <ProgramContextProvider>
                 <FavoriteContextProvider>
                   <Navbar />
                   <Route exact path="/" component={Home} />
@@ -29,9 +30,9 @@ function App() {
                   <Route exact path="/users/login" component={LoginPage} />
                   <Route exact path="/favorite" component={FavoritePage} />
                 </FavoriteContextProvider>
-              </ChannelContextProvider>
-            </ProgramContextProvider>
-          </CategoryContextProvider>
+              </ProgramContextProvider>
+            </CategoryContextProvider>
+          </ChannelContextProvider>
         </UserContextProvider>
       </BrowserRouter>
     </div>

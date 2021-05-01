@@ -7,27 +7,26 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [isValid, setIsValid] = useState(false)
-  const [inputDefault, setInputDefault] = useState(true)
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isValid, setIsValid] = useState(false);
+  const [inputDefault, setInputDefault] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
     if (confirmPassword === "") {
-      setInputDefault(true)
+      setInputDefault(true);
     } else {
-      setInputDefault(false)
+      setInputDefault(false);
       if (confirmPassword.length >= 4 && password === confirmPassword) {
-        setIsValid(true)
-      }
-      else {
-        setIsValid(false)
+        setIsValid(true);
+      } else {
+        setIsValid(false);
       }
     }
-  }, [password, confirmPassword])
+  }, [password, confirmPassword]);
 
-  const handleUserNameChange=(e)=>{
-    setUserName(e.target.value)
-  }
+  const handleUserNameChange = (e) => {
+    setUserName(e.target.value);
+  };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -37,8 +36,8 @@ const Register = () => {
     setPassword(e.target.value);
   };
   const checkPassword = (e) => {
-    setConfirmPassword(e.target.value)
-  }
+    setConfirmPassword(e.target.value);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     let userInfo = {
@@ -46,18 +45,16 @@ const Register = () => {
       email,
       password,
     };
-    if(isValid){
+    if (isValid) {
       let result = await register(userInfo);
-      if (result.success ) {
+      if (result.success) {
         setShowLogin(true);
-
       } else {
         setError(result.error);
       }
+    } else {
+      console.log("not valid");
     }
-    else{
-      console.log("not valid")
-    } 
   };
   return (
     <div>
@@ -67,29 +64,66 @@ const Register = () => {
             Register
           </Card.Header>
           <Card.Body>
-            <Form onSubmit={(e) => { handleSubmit(e);}}>
-              <p className={`${styles.errorBox} ${error ? styles.active : styles.inactive}`}>{" "}{error}
+            <Form
+              onSubmit={(e) => {
+                handleSubmit(e);
+              }}
+            >
+              <p
+                className={`${styles.errorBox} ${
+                  error ? styles.active : styles.inactive
+                }`}
+              >
+                {" "}
+                {error}
               </p>
               <Form.Group>
                 <Form.Label>User Name</Form.Label>
-                <Form.Control onChange={ handleUserNameChange } type="text" placeholder="Enter username" required />
+                <Form.Control
+                  onChange={handleUserNameChange}
+                  type="text"
+                  placeholder="Enter username"
+                  required
+                />
               </Form.Group>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
-                <Form.Control onChange={handleEmailChange} type="email"  placeholder="Enter email"  required  />
+                <Form.Control
+                  onChange={handleEmailChange}
+                  type="email"
+                  placeholder="Enter email"
+                  required
+                />
               </Form.Group>
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
-                <Form.Control  onChange={handlePasswordChange} type="password" placeholder="Please enter more than 4 characters" minLength="4" required />
+                <Form.Control
+                  onChange={handlePasswordChange}
+                  type="password"
+                  placeholder="Please enter more than 4 characters"
+                  minLength="4"
+                  required
+                />
               </Form.Group>
               <Form.Group controlId="formConfirmPassword">
                 <Form.Label>Confirm the password</Form.Label>
                 <Form.Control
-                  className={inputDefault ? "" : isValid ? "is-valid" : "is-invalid"}
-                  onChange={checkPassword}type="password" name="confirm"  placeholder="Confirm Password" required />
+                  className={
+                    inputDefault ? "" : isValid ? "is-valid" : "is-invalid"
+                  }
+                  onChange={checkPassword}
+                  type="password"
+                  name="confirm"
+                  placeholder="Confirm Password"
+                  required
+                />
               </Form.Group>
               <Container className="text-center">
-                <Button className={styles.singInButton} variant="secondary" type="submit">
+                <Button
+                  className={styles.singInButton}
+                  variant="secondary"
+                  type="submit"
+                >
                   Create Account
                 </Button>
               </Container>

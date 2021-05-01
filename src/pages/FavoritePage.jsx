@@ -1,36 +1,41 @@
-import { useContext, useEffect } from  "react" ;
+import React, { Suspense ,useState, useContext } from "react"
 import {FavoriteContext} from "../contexts/FavoriteContext";
+import FavoritePrograms from "../components/FavoritePrograms"
+import { Spinner }from "react-bootstrap"
 import styles from "../css/ProgramsPage.module.css"
+const  FavoriteChannels = React.lazy(()=>import("../components/FavoriteChannels"));
 
 const FavoritePage =()=>{
- 
-const { favoriteChannels,
-    getAllFavoriteChannels,
-    addCahnnelToFavorites,
-    favoritePrograms,
-    getAllFavoritePrograms,
-    addProgramToFavorites} =useContext( FavoriteContext );
+    const [ showChannels, setShowChannels]=useState(true)
+    const { setShowSchedule }=useContext(FavoriteContext)
 
     const handleOnclickChannels=()=>{
-      console.log("hej channel")
+      setShowChannels(true)
+      setShowSchedule(false)
     }
     const handleOnclickPrograms=()=>{
-      console.log("hej program")
+      setShowChannels(false)
     }
     
 
     const renderMenuBar=()=>{
       return (   
-       <ul className={styles.menuList} >
-         <li className={styles.listItem} onClick={()=>handleOnclickChannels()}>Mina Kanaler</li>
-         <li className={styles.listItem} onClick={()=>handleOnclickPrograms()}>Mina Programs</li>
+       <ul className={styles.favoriteMenuList} >
+         <li className={styles.favoriteListItem} onClick={()=>handleOnclickChannels()}>Mina Kanaler</li>
+         <li className={styles.favoriteListItem} onClick={()=>handleOnclickPrograms()}>Mina Program</li>
        </ul>
       )
     }
 
   return(
     <div >
+      <Suspense
+        className="text-center"
+        fallback={<Spinner animation="border" variant="secondary" />}
+      >
       {renderMenuBar()}
+      {showChannels?< FavoriteChannels />:<FavoritePrograms />}
+      </Suspense>
     </div>
   )
 }
