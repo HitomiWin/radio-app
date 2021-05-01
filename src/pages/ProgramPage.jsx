@@ -3,7 +3,7 @@ import { UserContext } from "../contexts/UserContext";
 import { ProgramContext } from "../contexts/ProgramContext";
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import {Spinner} from "react-bootstrap"
-import { HeartFill } from "react-bootstrap-icons";
+import { Heart, HeartFill } from "react-bootstrap-icons";
 import styles from "../css/ProgramsPage.module.css";
 const ProgramInfo = React.lazy(() => import("../components/ProgramInfo"));
 
@@ -79,7 +79,7 @@ const ProgramPage = (props) => {
                 }}
               />
             ) : (
-              <HeartFill
+              <Heart
                 color="gray"
                 className={styles.heartIcon}
                 size={25}

@@ -3,7 +3,7 @@ import { UserContext } from "../contexts/UserContext";
 import { ChannelContext } from "../contexts/ChannelContext";
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import { Spinner } from "react-bootstrap";
-import { HeartFill } from "react-bootstrap-icons";
+import { Heart, HeartFill } from "react-bootstrap-icons";
 import styles from "../css/ProgramsPage.module.css";
 const ProgramsByChannelId = React.lazy(() =>
   import("../components/ProgramsByCannelId")
@@ -97,7 +97,7 @@ const ProgramsPage = (props) => {
                 }}
               />
             ) : (
-              <HeartFill
+              <Heart
                 color="gray"
                 className={styles.heartIcon}
                 size={25}
