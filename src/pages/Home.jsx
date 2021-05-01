@@ -6,7 +6,7 @@ function Home() {
   return (
     <div>
       <h2 className="title">
-        <span>Channels</span>
+        <span>Kanaler</span>
       </h2>
       <Suspense
         className="text-center"

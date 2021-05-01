@@ -20,6 +20,11 @@ h2 {
   color: rgb(107, 106, 106);
 }
 
+.back-button{
+  margin-top: 1rem;
+  margin-left:1rem;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

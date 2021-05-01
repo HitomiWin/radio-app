@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom"
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import { ChannelContext } from "../contexts/ChannelContext";
 import ChannelSchedule from "./ChannelSchedule";
@@ -16,11 +17,13 @@ const FavoriteChannels = () => {
   const { channels } = useContext(ChannelContext);
   const [favoriteChannels, setFavoriteChannels] = useState(null);
   const [channelIdToSchedule, setChannelIdToSchedule] = useState(null);
+  const history = useHistory();
 
   useEffect(() => {
     if (channels) {
       getChannelsByFavoriteChannelIds();
     }
+    // eslint-disable-next-line
   }, [favoriteChannelIds]);
 
   const getChannelsByFavoriteChannelIds = () => {
@@ -30,14 +33,19 @@ const FavoriteChannels = () => {
     setFavoriteChannels(result);
   };
 
-  const handleClick = (channelId) => {
+  const handleOnClickCard =(channelId)=>{
+    history.push(`/programs/${channelId}`)
+  }
+
+  const handleGoToSchedule = (e,channelId) => {
+    e.stopPropagation();
     setChannelIdToSchedule(channelId);
     setShowSchedule(true);
   };
 
   const renderFavoriteChannels = () => {
     return favoriteChannels.map((channel) => (
-      <Card key={channel.id} className={styles.card}>
+      <Card key={channel.id} className={styles.card} onClick={()=>{handleOnClickCard(channel.id)}}>
         <Row className={styles.row}>
           <Col xs={3} style={{ padding: "1.25rem" }}>
             <Card.Img src={channel.image} alt={"image"} />
@@ -48,7 +56,7 @@ const FavoriteChannels = () => {
               <Card.Text>{channel.tagline}</Card.Text>
               <p
                 className={styles.goToSchedule}
-                onClick={() => handleClick(channel.id)}
+                onClick={(e) => handleGoToSchedule(e,channel.id)}
               >
                 {" "}
                 Tablå &gt; &gt; &gt;
@@ -71,15 +79,15 @@ const FavoriteChannels = () => {
 
   return (
     <div>
-      <h2 className="title">My Favorite Channels</h2>
+      <h2 className="title">Kanaler</h2>
       {showSchedule ? (
         <ChannelSchedule channelId={channelIdToSchedule} />
       ) : (
         <Container className="d-flex justify-content-center flex-wrap">
           {!favoriteChannels ? (
             <p>Loading...</p>
-          ) : favoriteChannels.length == 0 ? (
-            <p>Favorite Channels Not Found </p>
+          ) : favoriteChannels.length === 0 ? (
+            <p>Det finns inga favoritekanaler </p>
           ) : (
             <Row lg={2}>{renderFavoriteChannels()}</Row>
           )}

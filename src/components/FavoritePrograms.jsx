@@ -16,6 +16,7 @@ const FavoritePrograms = () => {
 
   useEffect(() => {
     getProgramsByFavoriteProgramIds();
+    // eslint-disable-next-line
   }, [favoriteProgramIds]);
 
   const getProgramsByFavoriteProgramIds = () => {
@@ -73,13 +74,13 @@ const FavoritePrograms = () => {
   };
   return (
     <div className={styles.programs}>
-      <h2 className="title">My Favorite Programs</h2>
+      <h2 className="title">Program</h2>
       <hr />
       <Container>
         {!favoritePrograms ? (
           <p>Loading...</p>
-        ) : favoritePrograms.length == 0 ? (
-          <p className="text-center">Favorite Programs Not Found</p>
+        ) : favoritePrograms.length === 0 ? (
+          <p className="text-center">Det finns inga favoritprogram</p>
         ) : (
           <Row> {renderFavoritePrograms()}</Row>
         )}

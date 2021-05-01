@@ -7,7 +7,7 @@ const  FavoriteChannels = React.lazy(()=>import("../components/FavoriteChannels"
 
 const FavoritePage =()=>{
     const [ showChannels, setShowChannels]=useState(true)
-    const { showSchedule, setShowSchedule }=useContext(FavoriteContext)
+    const { setShowSchedule }=useContext(FavoriteContext)
 
     const handleOnclickChannels=()=>{
       setShowChannels(true)
@@ -22,7 +22,7 @@ const FavoritePage =()=>{
       return (   
        <ul className={styles.favoriteMenuList} >
          <li className={styles.favoriteListItem} onClick={()=>handleOnclickChannels()}>Mina Kanaler</li>
-         <li className={styles.favoriteListItem} onClick={()=>handleOnclickPrograms()}>Mina Programs</li>
+         <li className={styles.favoriteListItem} onClick={()=>handleOnclickPrograms()}>Mina Program</li>
        </ul>
       )
     }

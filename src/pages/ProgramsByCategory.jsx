@@ -14,7 +14,6 @@ const ProgramsByCategory = (props) => {
     ProgramContext
   );
   const { categoryId } = props.match.params;
-  const { user } = useContext(UserContext);
   const { addProgramToFavorites } = useContext(FavoriteContext);
   const history = useHistory();
   useEffect(() => {
@@ -26,24 +25,11 @@ const ProgramsByCategory = (props) => {
   const handleClick = (programId) => {
     history.push(`/programs/allprogram/${programId}`);
   };
-  const handleOnClickLike = async (e, programId, channelId) => {
-    e.stopPropagation();
-    let favoriteProgram = {
-      programId,
-    };
-    let result = await addProgramToFavorites(favoriteProgram, channelId);
-    if (result.success) {
-      console.log(result.success);
-    } else {
-      console.log(result.error);
-    }
-  };
+  
 
   const renderMenuBar = () => {
     return (
-      <ul className={styles.menuList}>
         <h2 className="title">{category}</h2>
-      </ul>
     );
   };
 
@@ -61,7 +47,7 @@ const ProgramsByCategory = (props) => {
             <Col xs={3} style={{ padding: "1.25rem" }}>
               <Card.Img src={program.programimagewide} alt={"program image"} />
             </Col>
-            <Col xs={7}>
+            <Col xs={8}>
               <Card.Body>
                 <Card.Title>{program.name}</Card.Title>
                 <Card.Text>

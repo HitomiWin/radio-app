@@ -7,7 +7,7 @@ function Back() {
         history.goBack();
     }
     return (
-        <CaretLeft size={25} color={gray} onClick={handleHistory} />
+        <CaretLeft className="back-button" size={25} color="gray" onClick={handleHistory} />
     )
 }
 

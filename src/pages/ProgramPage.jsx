@@ -61,7 +61,7 @@ const ProgramPage = (props) => {
           <img
             className={styles.channelImage}
             src={program.programimagewide}
-            alt="program image"
+            alt="program"
           />
         </li>
         <li className={styles.programName}>{program.name}</li>

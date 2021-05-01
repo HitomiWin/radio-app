@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ProgramContext } from "../contexts/ProgramContext";
 import { Card } from "react-bootstrap";
+import Back from "./Back"
 // import { Tag } from "react-bootstrap-icons";
 import styles from "../css/ProgramInfo.module.css";
 const ProgramInfo = () => {
@@ -23,6 +24,14 @@ const ProgramInfo = () => {
     );
   };
 
-  return <div className={styles.programinfo}>{program && renderProgram()}</div>;
+  return ( 
+    <div  >
+    <Back /> 
+    <div className={styles.programinfo}>
+      {program && renderProgram()}
+    </div>
+
+    </div>
+  ) 
 };
 export default ProgramInfo;

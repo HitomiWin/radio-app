@@ -1,6 +1,6 @@
-import { useContext } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import { card, time } from "../css/ChannelSchedule.module.css";
+
 const Schedule = (props) => {
   return (
     <div>
