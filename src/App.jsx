@@ -11,9 +11,10 @@ import ProgramsByCategory from "./pages/ProgramsByCategory";
 import UserContextProvider from "./contexts/UserContext";
 import LoginPage from "./pages/LoginPage";
 import FavoritePage from "./pages/FavoritePage"
+
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <BrowserRouter>
       <UserContextProvider>
         <ChannelContextProvider>

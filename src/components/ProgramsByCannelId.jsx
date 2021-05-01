@@ -1,11 +1,12 @@
-import { useContext, useEffect } from "react";
+import  { useContext, useEffect } from "react";
 import { ProgramContext } from "../contexts/ProgramContext";
 import { UserContext } from "../contexts/UserContext";
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import {useHistory} from "react-router-dom"
-import { Card,  Container, Col, Row, Button} from "react-bootstrap";
+import { Card,  Container, Col, Row} from "react-bootstrap";
 import { Tag } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
+
 const ProgramsByChannelId=(props)=> {
   const { programs, getProgramsByChannelId } = useContext( ProgramContext );
   const { addProgramToFavorites } = useContext( FavoriteContext );
@@ -49,11 +50,7 @@ const ProgramsByChannelId=(props)=> {
           <Tag color="gray" size={25} />
            {program.channel["name"]} </Card.Text>
        </Card.Body>
-       </Col>
-       {user &&
-       <Col  xs={1}  style={{paddingTop:"1.25rem"}} className={styles.heart} >
-           <Button variant="info"  onClick={(e)=>{handleOnClickLike(e,program.id, props.channelId)}}>Like</Button> 
-        </Col> }    
+       </Col>  
        </Row>
      </Card>
       </Col>
@@ -62,7 +59,7 @@ const ProgramsByChannelId=(props)=> {
  } 
   return (
     <div className={styles.programs}>
-      <h1 >Program A-Ö</h1>
+      <h2 >Program A-Ö</h2>
       <hr />
       <Container >
       <Row >      

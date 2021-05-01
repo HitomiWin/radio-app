@@ -1,12 +1,18 @@
-import React, { Suspense } from "react"
-const Channels = React.lazy(()=>import("../components/Channels"));
+import React, { Suspense } from "react";
+import { Spinner } from "react-bootstrap";
+const Channels = React.lazy(() => import("../components/Channels"));
 
 function Home() {
   return (
     <div>
-      <h1>This is the Homepage</h1>
-      <Suspense fallback="loading...">
-      <Channels />
+      <h2 className="title">
+        <span>Channels</span>
+      </h2>
+      <Suspense
+        className="text-center"
+        fallback={<Spinner animation="border" variant="secondary" />}
+      >
+        <Channels />
       </Suspense>
     </div>
   );

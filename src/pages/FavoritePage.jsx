@@ -1,7 +1,7 @@
 import React, { Suspense ,useState, useContext } from "react"
 import {FavoriteContext} from "../contexts/FavoriteContext";
-// import FavoriteChannels from "../components/FavoriteChannels"
 import FavoritePrograms from "../components/FavoritePrograms"
+import { Spinner }from "react-bootstrap"
 import styles from "../css/ProgramsPage.module.css"
 const  FavoriteChannels = React.lazy(()=>import("../components/FavoriteChannels"));
 
@@ -29,7 +29,10 @@ const FavoritePage =()=>{
 
   return(
     <div >
-      <Suspense fallback="loading...">
+      <Suspense
+        className="text-center"
+        fallback={<Spinner animation="border" variant="secondary" />}
+      >
       {renderMenuBar()}
       {showChannels?< FavoriteChannels />:<FavoritePrograms />}
       </Suspense>
