@@ -1,0 +1,21 @@
+.logo {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
+.logo:hover {
+  color: lightgray;
+  text-decoration: none;
+}
+.link {
+  color: #ffffff80;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  margin-right: 2rem;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: lightgray;
+  text-decoration: none;
+}
