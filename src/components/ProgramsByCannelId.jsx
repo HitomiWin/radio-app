@@ -27,7 +27,7 @@ const ProgramsByChannelId=(props)=> {
       <Row >      
       {programs && 
       programs.map((program)=>(
-        <ProgramCard program={program} />
+        <ProgramCard key ={program.id} program={program} />
       ))
     }
       </Row> 

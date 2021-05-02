@@ -80,6 +80,10 @@ li {
   text-decoration: underline;
   color: black;
 }
+.cardTag {
+  display: flex;
+  justify-content: space-between;
+}
 
 @media only screen and (min-width: 576px) {
   .inactive {
@@ -96,6 +100,9 @@ li {
   .programName {
     font-size: 1.5rem;
     margin-right: 2rem;
+  }
+  .card {
+    height:25vh;
   }
 }
 

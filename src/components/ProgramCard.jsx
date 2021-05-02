@@ -64,13 +64,20 @@ const ProgramCard=(props)=> {
         <Col xs={7} >
         <Card.Body>
           <Card.Title>{props.program.name}</Card.Title>
+          <div className ={styles.cardTag}>
+            {props.program.channel&&
           <Card.Text>
            <Tag color="gray" size={25} />
-            {props.program.channel["name"]} </Card.Text>
+            {props.program.channel["name"]} </Card.Text>}
+            {props.program.programcategory&&
+          <Card.Text>
+           <Tag color="gray" size={25} />
+            {props.program.programcategory["name"]} </Card.Text>}
+          </div>
         </Card.Body>
         </Col>
         {user && (
-          <Col style={{padding:"1.25rem"}}>
+          <Col style={{padding:"1.25rem"}}  xs={1}>
             {isFavorite ? (
               <HeartFill
                 color="IndianRed"
