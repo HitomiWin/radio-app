@@ -8,7 +8,6 @@ import styles from "../css/ProgramsPage.module.css";
 
 const ProgramsByChannelId = (props) => {
   const { programs, getProgramsByChannelId } = useContext(ProgramContext);
-  const history = useHistory();
 
   useEffect(() => {
     getProgramsByChannelId(props.channelId);
