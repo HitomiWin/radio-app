@@ -49,7 +49,7 @@ const FavoriteChannels = () => {
     return favoriteChannels.map((channel) => (
       <Card
         key={channel.id}
-        className={styles.card}
+        className={styles.favoritecard}
         onClick={() => {
           handleOnClickCard(channel.id);
         }}

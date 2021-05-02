@@ -1,8 +1,18 @@
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
+
 }
 .card:hover {
+  cursor: pointer;
+  background-color: rgba(161, 160, 160, 0.2);
+}
+
+.favoritecard{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+.favoritecard:hover {
   cursor: pointer;
   background-color: rgba(161, 160, 160, 0.2);
 }
@@ -21,4 +31,21 @@
 }
 .goToSchedule :hover {
   color: aquamarine;
+}
+
+@media only screen and (min-width: 576px) {
+ .card {
+  height:20vh;
+ }
+ .favoritecard {
+  height:25vh;
+ }
+}
+@media only screen and (min-width: 769px) {
+ .card {
+  height:45vh;
+ }
+ .favoritecard {
+  height:50vh;
+ }
 }

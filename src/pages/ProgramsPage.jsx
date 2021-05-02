@@ -30,13 +30,14 @@ const ProgramsPage = (props) => {
   }, [user]);
   useEffect(() => {
     getFavoriteHeart();
+    console.log("hej")
     // eslint-disable-next-line
   }, [channelId, favoriteChannelIds]);
 
   const getFavoriteHeart = () => {
-    if (favoriteChannelIds && singleChannel) {
+    if (favoriteChannelIds ) {
       let result = favoriteChannelIds.find(
-        (fci) => fci.channelId == singleChannel.id
+        (fci) => fci.channelId == channelId
       );
       if (result) {
         setIsChannelFavorite(true);
@@ -123,18 +124,22 @@ const ProgramsPage = (props) => {
   };
 
   return (
-    <div className={styles.programPage}>
-      {singleChannel && renderMenuBar()}
-      <Suspense
-        className="text-center"
-        fallback={<Spinner animation="border" variant="secondary" />}
-      >
-        {showPrograms ? (
-          <ProgramsByChannelId channelId={channelId} />
-        ) : (
-          <ChannelSchedule channelId={channelId} />
-        )}
-      </Suspense>
+    <div>
+      {singleChannel && (
+        <div className={styles.programPage}>
+          {renderMenuBar()}
+          <Suspense
+            className="text-center"
+            fallback={<Spinner animation="border" variant="secondary" />}
+          >
+            {showPrograms ? (
+              <ProgramsByChannelId channelId={singleChannel.id} />
+            ) : (
+              <ChannelSchedule channelId={singleChannel.id} />
+            )}
+          </Suspense>
+        </div>
+      )}
     </div>
   );
 };

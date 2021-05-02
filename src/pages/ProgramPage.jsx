@@ -16,19 +16,19 @@ const ProgramPage = (props) => {
     deleteFavoriteProgram,
   } = useContext(FavoriteContext);
   const { user } = useContext(UserContext);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(null);
 
   useEffect(() => {
     getProgramByProgramId(programId);
-    getFavoriteHeart();
     // eslint-disable-next-line
   }, [user]);
   useEffect(() => {
     getFavoriteHeart();
+    // eslint-disable-next-line
   }, [programId, favoriteProgramIds]);
 
   const getFavoriteHeart = () => {
-    if (favoriteProgramIds && program) {
+    if (favoriteProgramIds ) {
       let result = favoriteProgramIds.find((fpi) => fpi.programId == programId);
       if (result) {
         setIsFavorite(true);
