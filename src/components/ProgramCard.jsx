@@ -18,7 +18,7 @@ const ProgramCard=(props)=> {
 
   useEffect(() => {
     getFavoriteHeart();
-  }, [props.program, favoriteProgramIds]);
+  }, [props.program]);
 
   const handleClick=(programId)=>{
     history.push(`/programs/allprogram/${programId}`)

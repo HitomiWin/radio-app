@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { ProgramContext } from "../contexts/ProgramContext";
-import ProgramCard from "../components/ProgramCard"
-import {  Container, Row } from "react-bootstrap";
+import ProgramCard from "../components/ProgramCard";
+import { Container, Row } from "react-bootstrap";
 import styles from "../css/ProgramsByCategory.module.css";
 
 const ProgramsByCategory = (props) => {
@@ -11,7 +11,6 @@ const ProgramsByCategory = (props) => {
     ProgramContext
   );
   const { categoryId } = props.match.params;
- 
 
   useEffect(() => {
     getCategoryById(categoryId);
@@ -19,7 +18,6 @@ const ProgramsByCategory = (props) => {
     // eslint-disable-next-line
   }, [categoryId, programsByCategory]);
 
- 
   const renderMenuBar = () => {
     return <h2 className="title">{category}</h2>;
   };
@@ -29,10 +27,11 @@ const ProgramsByCategory = (props) => {
       <hr />
       <Container>
         <Row>
-        {programsByCategory && 
-        programsByCategory.map((program)=>(
-          <ProgramCard key={program.id} program={program} />
-        ))}</Row>
+          {programsByCategory &&
+            programsByCategory.map((program) => (
+              <ProgramCard key={program.id} program={program} />
+            ))}
+        </Row>
       </Container>
     </div>
   );

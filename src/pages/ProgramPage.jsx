@@ -24,7 +24,7 @@ const ProgramPage = (props) => {
   }, [user]);
   useEffect(() => {
     getFavoriteHeart();
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, [programId, favoriteProgramIds]);
 
   const getFavoriteHeart = () => {

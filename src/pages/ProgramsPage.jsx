@@ -124,20 +124,21 @@ const ProgramsPage = (props) => {
 
   return (
     <div>
-      {singleChannel &&
-    <div className={styles.programPage}>
-       {renderMenuBar()}
-      <Suspense
-        className="text-center"
-        fallback={<Spinner animation="border" variant="secondary" />}
-      >
-        {showPrograms ? (
-          <ProgramsByChannelId channelId={singleChannel.id} />
-        ) : (
-          <ChannelSchedule channelId={singleChannel.id} />
-        )}
-      </Suspense>
-    </div>}
+      {singleChannel && (
+        <div className={styles.programPage}>
+          {renderMenuBar()}
+          <Suspense
+            className="text-center"
+            fallback={<Spinner animation="border" variant="secondary" />}
+          >
+            {showPrograms ? (
+              <ProgramsByChannelId channelId={singleChannel.id} />
+            ) : (
+              <ChannelSchedule channelId={singleChannel.id} />
+            )}
+          </Suspense>
+        </div>
+      )}
     </div>
   );
 };
