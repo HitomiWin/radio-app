@@ -17,12 +17,12 @@ const ProgramCard=(props)=> {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
+    if(user){
     getFavoriteHeart();
-  }, [props.program]);
+    console.log("program")
+    }
+  }, [favoriteProgramIds]);
 
-  const handleClick=(programId)=>{
-    history.push(`/programs/allprogram/${programId}`)
-  }
   const getFavoriteHeart = () => {
     if (favoriteProgramIds && props.program) {
       let result = favoriteProgramIds.find((fpi) => fpi.programId == props.program.id);
@@ -33,6 +33,10 @@ const ProgramCard=(props)=> {
       }
     }
   };
+
+  const handleClick=(programId)=>{
+    history.push(`/programs/allprogram/${programId}`)
+  }
   const handleOnClickGrayHeart = async (e, programId) => {
     e.stopPropagation();
     setIsFavorite(!isFavorite);

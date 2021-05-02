@@ -20,9 +20,10 @@ const ChannelCard = (props) => {
   useEffect(() => {
     if (user) {
       getFavoriteHeart();
+      console.log("channel")
     }
     // eslint-disable-next-line
-  }, [props.channel, favoriteChannelIds]);
+  }, [ favoriteChannelIds]);
 
   const getFavoriteHeart = () => {
     if (favoriteChannelIds && props.channel) {

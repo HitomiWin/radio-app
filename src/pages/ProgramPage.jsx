@@ -28,7 +28,7 @@ const ProgramPage = (props) => {
   }, [programId, favoriteProgramIds]);
 
   const getFavoriteHeart = () => {
-    if (favoriteProgramIds && program) {
+    if (favoriteProgramIds ) {
       let result = favoriteProgramIds.find((fpi) => fpi.programId == programId);
       if (result) {
         setIsFavorite(true);
