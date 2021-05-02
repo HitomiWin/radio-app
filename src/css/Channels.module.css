@@ -1,6 +1,7 @@
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
+
 }
 .card:hover {
   cursor: pointer;
@@ -21,4 +22,15 @@
 }
 .goToSchedule :hover {
   color: aquamarine;
+}
+
+@media only screen and (min-width: 576px) {
+ .card {
+  height:20vh;
+ }
+}
+@media only screen and (min-width: 769px) {
+ .card {
+  height:25vh;
+ }
 }
