@@ -30,13 +30,14 @@ const ProgramsPage = (props) => {
   }, [user]);
   useEffect(() => {
     getFavoriteHeart();
+    console.log("hej")
     // eslint-disable-next-line
   }, [channelId, favoriteChannelIds]);
 
   const getFavoriteHeart = () => {
-    if (favoriteChannelIds && singleChannel) {
+    if (favoriteChannelIds ) {
       let result = favoriteChannelIds.find(
-        (fci) => fci.channelId == singleChannel.id
+        (fci) => fci.channelId == channelId
       );
       if (result) {
         setIsChannelFavorite(true);
