@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ChannelContext } from "../contexts/ChannelContext";
-import { Card, Container, Col, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import ChannelCard from "./ChannelCard"
 
 function Channels() {

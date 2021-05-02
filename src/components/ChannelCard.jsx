@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
-import { Card, Container, Col, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
 import { Heart, HeartFill } from "react-bootstrap-icons";
 import { FavoriteContext } from "../contexts/FavoriteContext";
 import styles from "../css/Channels.module.css";

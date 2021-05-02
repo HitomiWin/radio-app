@@ -1,9 +1,8 @@
 import  { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { ProgramContext } from "../contexts/ProgramContext";
 import { FavoriteContext } from "../contexts/FavoriteContext"
 import {useHistory} from "react-router-dom"
-import { Card,  Container, Col, Row} from "react-bootstrap";
+import { Card, Col, Row} from "react-bootstrap";
 import { Tag, Heart, HeartFill } from 'react-bootstrap-icons';
 import styles from "../css/ProgramsPage.module.css"
 
