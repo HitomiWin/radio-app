@@ -14,7 +14,7 @@ const ChannelContextProvider = (props) => {
   const getAllChannels = async () => {
     let fetchedchannels = await fetch("/api/v1/channels");
     fetchedchannels = await fetchedchannels.json();
-    if (fetchedchannels) {
+    if (fetchedchannels) {  
       setChannels(fetchedchannels);
     }
   };

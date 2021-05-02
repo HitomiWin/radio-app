@@ -123,18 +123,21 @@ const ProgramsPage = (props) => {
   };
 
   return (
+    <div>
+      {singleChannel &&
     <div className={styles.programPage}>
-      {singleChannel && renderMenuBar()}
+       {renderMenuBar()}
       <Suspense
         className="text-center"
         fallback={<Spinner animation="border" variant="secondary" />}
       >
         {showPrograms ? (
-          <ProgramsByChannelId channelId={channelId} />
+          <ProgramsByChannelId channelId={singleChannel.id} />
         ) : (
-          <ChannelSchedule channelId={channelId} />
+          <ChannelSchedule channelId={singleChannel.id} />
         )}
       </Suspense>
+    </div>}
     </div>
   );
 };
