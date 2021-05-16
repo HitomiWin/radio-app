@@ -19,7 +19,6 @@ const ProgramCard=(props)=> {
   useEffect(() => {
     if(user){
     getFavoriteHeart();
-    console.log("program")
     }
   }, [favoriteProgramIds]);
 
