@@ -2,7 +2,6 @@ import { useContext, useEffect } from "react";
 import { ProgramContext } from "../contexts/ProgramContext";
 import Back from "./Back";
 import ProgramCard from "./ProgramCard";
-import { useHistory } from "react-router-dom";
 import { Container, Row } from "react-bootstrap";
 import styles from "../css/ProgramsPage.module.css";
 

@@ -14,7 +14,6 @@ const ChannelCard = (props) => {
     addChannelToFavorites,
     favoriteChannelIds,
   } = useContext(FavoriteContext);
-  // const { channel } = props.channel
   const history = useHistory();
 
   useEffect(() => {
@@ -28,6 +27,7 @@ const ChannelCard = (props) => {
   const getFavoriteHeart = () => {
     if (favoriteChannelIds && props.channel) {
       let result = favoriteChannelIds.find(
+           // eslint-disable-next-line
         (fci) => fci.channelId == props.channel.id
       );
       if (result) {
