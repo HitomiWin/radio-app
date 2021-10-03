@@ -19,12 +19,13 @@ const ProgramCard=(props)=> {
   useEffect(() => {
     if(user){
     getFavoriteHeart();
-    console.log("program")
     }
+       // eslint-disable-next-line
   }, [favoriteProgramIds]);
 
   const getFavoriteHeart = () => {
     if (favoriteProgramIds && props.program) {
+         // eslint-disable-next-line
       let result = favoriteProgramIds.find((fpi) => fpi.programId == props.program.id);
       if (result) {
         setIsFavorite(true);

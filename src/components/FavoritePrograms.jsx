@@ -22,6 +22,7 @@ const FavoritePrograms = () => {
   const getProgramsByFavoriteProgramIds = () => {
     if (allPrograms) {
       let result = allPrograms.filter((all) =>
+         // eslint-disable-next-line
         favoriteProgramIds.find((fpi) => all.id == fpi.programId)
       );
 

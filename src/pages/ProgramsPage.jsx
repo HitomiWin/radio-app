@@ -30,7 +30,6 @@ const ProgramsPage = (props) => {
   }, [user]);
   useEffect(() => {
     getFavoriteHeart();
-    console.log("hej")
     // eslint-disable-next-line
   }, [channelId, favoriteChannelIds]);
 

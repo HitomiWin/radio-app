@@ -29,6 +29,7 @@ const ProgramPage = (props) => {
 
   const getFavoriteHeart = () => {
     if (favoriteProgramIds ) {
+         // eslint-disable-next-line
       let result = favoriteProgramIds.find((fpi) => fpi.programId == programId);
       if (result) {
         setIsFavorite(true);
