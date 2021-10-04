@@ -1,6 +1,6 @@
 module.exports = {
   // run react-dev-server (true) or serve build (false)
-  dev: true,
+  dev: false,
   // whether to open the react site in a browser at start
   openInBrowser: true,
   // path to your own backend api
