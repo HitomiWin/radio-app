@@ -15,11 +15,8 @@ const ChannelSchedule = React.lazy(() =>
 const ProgramsPage = (props) => {
   const { channelId } = props.match.params;
   const { singleChannel, getChannelById } = useContext(ChannelContext);
-  const {
-    deleteFavoriteChannel,
-    addChannelToFavorites,
-    favoriteChannelIds,
-  } = useContext(FavoriteContext);
+  const { deleteFavoriteChannel, addChannelToFavorites, favoriteChannelIds } =
+    useContext(FavoriteContext);
   const { user } = useContext(UserContext);
   const [showPrograms, setShowPrograms] = useState(true);
   const [isChannelFavorite, setIsChannelFavorite] = useState(false);
@@ -34,8 +31,9 @@ const ProgramsPage = (props) => {
   }, [channelId, favoriteChannelIds]);
 
   const getFavoriteHeart = () => {
-    if (favoriteChannelIds ) {
+    if (favoriteChannelIds) {
       let result = favoriteChannelIds.find(
+        // eslint-disable-next-line
         (fci) => fci.channelId == channelId
       );
       if (result) {
